@@ -1,0 +1,47 @@
+<view class="order">
+    <view class="marry">
+        <view class="weuinavbar">
+            <view bindtap="tabClick" class="navbaritem {{activeIndex==index?'itemon':''}}" id="{{index}}" wx:for="{{luntext}}" wx:key="*this">
+                <view class="itemtext weuinavbartitle">{{item}}</view>
+                <view class="zheline {{activeIndex==index?'block':''}}" id="{{index}}"></view>
+            </view>
+        </view>
+    </view>
+    <view class="banner" wx:for="{{mydata}}">
+        <view class="flex-bet bannertop">
+            <view class="bannertitle gobyndsingle">任务发布人：{{item.user_name}}</view>
+            <view class="bannertype">{{item.createtime}}</view>
+        </view>
+        <view bindtap="order_info" class="bannercon" data-id="{{item.id}}" data-store_id="{{item.store_id}}">
+            <image mode="aspectFill" src="{{url}}{{item.good_img}}"></image>
+            <view class="bannerinfo">
+                <view class="bannernumber font_text">任务内容：{{item.details}}</view>
+                <view class="flex-bet">
+                    <view class="bannername gobyndsingle">{{item.good_name}}</view>
+                    <view class="bannernum">¥{{item.money_clf}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="content">
+            <view class="address">地址:{{item.address}}
+            </view>
+            
+                  <view bindtap="phone" data-id="{{item.user_tel}}">
+          <view class="rel">
+            <image  class='iphone_btn'  src="../image/dianhua.png"></image>
+          </view>
+          <!--<view>{{item.user_tel}}</view>-->
+        </view>
+
+            <!--<view class="contentfoot">
+                <view bindtap="delorder" class="cancel" data-id="{{item.id}}" wx:if="{{item.state==1}}">取消订单</view>
+                <view bindtap="toorder" class="cancel" data-id="{{item.id}}" wx:if="{{item.state==2}}">申请退款</view>
+                <view bindtap="toorder" class="cancel" data-id="{{item.id}}" wx:if="{{item.state==3}}">申请退款</view>
+                <view bindtap="delorder" class="cancel" data-id="{{item.id}}" wx:if="{{item.state==4}}">删除订单</view>
+                <view bindtap="pay" class="fukuan" data-id="{{item.id}}" data-money="{{item.money}}" data-storeid="{{item.store_id}}" wx:if="{{item.state==1}}">付款</view>
+                <view bindtap="complete" class="fukuan" data-id="{{item.id}}" wx:if="{{item.state==3}}">确认收货</view>
+            </view>-->
+        </view>
+    </view>
+    <view class="nomore">无更多信息</view>
+</view>

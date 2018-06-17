@@ -1,0 +1,44 @@
+<view class="banner" wx:if="{{pc.length!=0}}">
+    <view bindtap="carinfo" class="banner_list" data-id="{{item.id}}" wx:for="{{pc}}" wx:key="{{item.value}}">
+        <view bindtap="shuninfo" class="mation_title flex-bet">
+             <!--<view class="flex-center madizhi">
+               <view class="gobyndsingle {{item.class3}}" style="max-width:150rpx">{{item.start_place}}</view>
+                <image class="daoda" src="../image/282792329038474488.png"></image>
+                <view class="gobyndsingle {{item.class3}}" style="max-width:150rpx">{{item.end_place}}</view>
+            </view> -->
+            <view class="banner_time {{item.class3}} font_text">{{item.tz.details}} </view>
+        </view>
+        <view class="flex-bet banner_menu">
+            <view bindtap="shuninfo" class="flex-center banner_content">
+                <image class="timeimg" src="../image/naozhong@2x.png"></image>
+                <view class=" {{item.class3}}">{{item.tz.new_time}} </view>
+            </view>
+            <view  class="flex-center banner_tel {{item.class4}}" data-tel="{{item.link_tel}}">
+              
+                <view class="" wx:if="{{item.tz.tatus==1}}">未被接单</view>
+                <view class="" wx:if="{{item.tz.tatus==2}}">正在执行</view>
+                <view class="" wx:if="{{item.tz.tatus==3}}">待付款</view>
+<view class="" wx:if="{{item.tz.tatus==4}}">付款成功</view>
+<view class="" wx:if="{{item.tz.tatus==5}}">撤回</view>
+            </view>
+        </view>
+        <view class="car {{item.class1}}" >{{item.typename}}</view>
+        <view class="car {{item.class2}}" wx:if="{{item.is_open==2}}">{{item.typename}}</view>
+        <block wx:if="{{item.is_open==1}}">
+            <view bindtap="shuninfo" class="beizhu gobyndmulit {{item.class}}" >
+        备注：{{item.other}}
+      </view>
+        </block>
+        <block wx:if="{{item.is_open==2}}">
+            <view bindtap="shuninfo" class="beizhu gobyndmulit color3" wx:if="{{item.other!=''}}">
+        备注：{{item.other}}
+      </view>
+        </block>
+    </view>
+</view>
+<view class="none" wx:else>
+    <view>
+        <image class="ab lr" mode="aspectFill" src="../image/tie2.png"></image>
+    </view>
+    <view>暂无入驻的信息</view>
+</view>

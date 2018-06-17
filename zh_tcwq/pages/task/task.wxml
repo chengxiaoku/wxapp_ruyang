@@ -1,0 +1,53 @@
+<view class="hydlzhezhao" wx:if="{{hydl==true}}"></view>
+<view class="hydlbd" wx:if="{{hydl==true}}">
+    <image class="hydlimg" src="{{url}}{{system.tc_img}}"></image>
+    <view class="hydl">
+        <view class="hydltt">平台公告</view>
+        <view class="hydlnr">{{system.tc_gg}}</view>
+    </view>
+    <button bindgetuserinfo="updateUserInfo" class="hydlqueren" openType="getUserInfo" style="background:{{system.color}}">朕已阅</button>
+</view>
+<view class="receive rel" wx:if="{{receive==true}}">
+    <view bindtap="receive1"></view>
+    <view class="ab udlr" style="height:\"{{height}};width:{{width}}\"">
+        <image mode="widthFix" src="../image/receive.png"></image>
+    </view>
+</view>
+<view class="header">
+    <view class="header_title">任务清单</view>
+</view>
+<view class="infobody">
+
+    <view class="infodetial">
+        <view class="ionfointro">
+            任务金额：<text>赏金20元</text>
+        </view>
+        <view class="ionfointro">
+            任务详情：<text>这里是任务内容</text>
+        </view>
+        <view class="ionfointro">
+            任务地址：<text>河南省洛阳市</text>
+        </view>
+        
+<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" circles="{{circles}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%;margin:20rpx 0;"></map>
+
+        <view class="flex-bet portrait_teltop">
+        <view class="portrait_telnum">发布时间：{{post.time2}}</view>
+    </view>
+    <view class="flex-bet portrait_teltop">
+        <view class="portrait_telnum">联系电话：{{post.user_tel}}</view>
+        <image bindtap="phone" class="portrait_telimg" src="../image/tel.png"></image>
+    </view>
+    </view>
+    <view ><button style='margin-top:40rpx;background-color:#ed414a;height:80rpx;color:white;line-height:80rpx;'>确认送达</button></view>
+</view>
+<!-- <view class="portrait_tel">
+    <view class="flex-bet portrait_teltop">
+        <view class="portrait_telnum">发布时间：{{post.time2}}</view>
+    </view>
+    <view class="flex-bet portrait_teltop">
+        <view class="portrait_telnum">联系电话：{{post.user_tel}}</view>
+        <image bindtap="phone" class="portrait_telimg" src="../image/tel.png"></image>
+    </view>
+</view> -->
+

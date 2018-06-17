@@ -1,0 +1,237 @@
+<view class="hydlzhezhao" wx:if="{{hydl==true}}"></view>
+<view class="hydlbd" wx:if="{{hydl==true}}">
+    <image class="hydlimg" src="{{url}}{{system.tc_img}}"></image>
+    <view class="hydl">
+        <view class="hydltt">平台公告</view>
+        <view class="hydlnr">{{system.tc_gg}}</view>
+    </view>
+    <button bindgetuserinfo="updateUserInfo" class="hydlqueren" openType="getUserInfo" style="background:{{system.color}}">朕已阅</button>
+</view>
+<view class="receive rel" wx:if="{{receive==true}}">
+    <view bindtap="receive1"></view>
+    <view class="ab udlr" style="height:\"{{height}};width:{{width}}\"">
+        <image mode="widthFix" src="../image/receive.png"></image>
+    </view>
+</view>
+<view class="infobody">
+    <view class="header rel">
+        <view bindtap="post" class="post ab ud">
+      我要发布
+    </view>
+        <view class="user_img fl rel">
+            <image class="ab ud" src="{{dongtailist.img}}"></image>
+        </view>
+        <view class="user_info fl rel">
+            <view class="info_name"></view>
+            <view class="info_label">
+                <!-- <view class="fl color2 color" wx:if="{{post.top==1}}">置顶</view> 
+                <view class="fl color1 color" wx:if="{{post.type_name!=null}}">{{post.type_name}}</view>-->
+                <view style='font-size:16px;padding:0;' >{{dongtailist.name}}</view>
+            </view>
+            <view class="info_name1">
+                <image mode="widthFix" src="../image/xiangqingdizhi@3x.png"></image>
+                <text>{{dongtailist.dili}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="infodetial">
+        <view class="ionfointro">
+            <text>{{dongtailist.content}}</text>
+        </view>
+        <view class="imgnum" wx:if="{{dongtailist.image_list!=''}}">
+            <image bindtap="previewImage" wx:key=""  mode="widthFix" src="{{url}}{{item}}" wx:for="{{dongtailist.image_list}}"></image>
+        </view>
+
+<view class="imgnum"  wx:if="{{dongtailist.veido!='' && dongtailist.veido}}"  objectFit="contain">
+      <video class="video" controls="{{control}}" style='width:100%;' autoplay="true" loop="true" muted="true" src="http://cweekend.cn/ruyang/web/video/{{dongtailist.veido}}"></video>
+    </view>
+
+        <form bindreset="formReset" bindsubmit="formSubmit" reportSubmit="true">
+        <view class="viewnum rel" style='display:inline-block;' >
+                <!-- <image class="views" src="../image/view.png"></image>
+                <view class="viewsnum">{{post.views}}</view>人浏览 -->
+                <image bindtap="thumbs_up" class="zan" src="../image/thumbs_up.png"></image>
+                
+                <view class="zannum" >{{dongtailist.dianzan_sum}}</view>
+        人点赞
+                <button class="zan_button ab" formType="submit"></button>
+            </view>
+        </form>
+        
+            
+
+        <view style='font-size:13px;display:inline-block;' wx:for="{{dongtailist.dashanglist}}" wx:for-index="ind" wx:key="">
+            <view style="color:red;display:inline-block;" wx:if="{{ind !=(dongtailist.dashanglist.length-1) }}">{{item.name}}打赏{{item.dashang_money}},</view>
+            <view style="color:red;display:inline-block;" wx:else>{{item.name}}打赏{{item.dashang_money}}</view>
+        </view>
+
+        <view class="portrait flex2">
+            <view class="flex-bet portrait_teltop">
+                <view class="portrait_telnum">发布时间：{{dongtailist.new_time}}</view>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- <view class="portrait_tel">
+    <view class="flex-bet portrait_teltop">
+        <view class="portrait_telnum">发布时间：{{post.time2}}</view>
+    </view>
+    <view class="flex-bet portrait_teltop">
+        <view class="portrait_telnum">联系电话：{{post.user_tel}}</view>
+        <image bindtap="phone" class="portrait_telimg" src="../image/tel.png"></image>
+    </view>
+    <view class="portrait_telbot">联系我时，请说是在{{system_name}}上看到的信息喔...</view>
+</view> -->
+
+<view class="portrait_ctop flex-bet">
+    <view class="flex-center">
+        <view class="portrait_cxian"></view>
+        <view class="portrait_com">评论</view>
+    </view>
+    <view class="flex-center">
+        <image class="portrait_cimg" src="../image/fang.png"></image>
+        <view bindtap="mycomment" data-plid="0" class="portrait_ping">我要评论</view>
+    </view>
+</view>
+<view style='display:{{dongtailist?"block":"none"}};margin-bottom:90rpx' >
+<view class="userwords" wx:for="{{dongtailist.pinglunlist}}" wx:for-index="plind" wx:key="" bindtap='comdetail' data-plid='{{item.id}}'>
+    <image class="userwords_img" src="{{item.senduserimg}}"></image>
+
+    <view class="userwords_rit">
+        <view class="flex-bet">
+            <view>
+                <view class="userwords_color" wx:if="{{item.parent_pinglun_id==0}}">{{item.senduser}}</view>
+                <view class="userwords_color"  wx:else>{{item.senduser}}<text style='color: #333;'>回复</text>{{item.userid2}}</view>
+                <view class="userwords_color2">{{item.new_time}}</view>
+            </view>
+            <!-- <view bindtap="reply1" class="userwords_color" data-name="{{item.name}}" data-reflex_id="{{item.id}}">回复</view> -->
+            <view>
+              <view style='float:right;line-height:16px;color:#aaa'>{{item.heart}}</view>
+              <image catchtap='mycomlike' data-plid="{{item.id}}" data-plindex='{{plind}}' wx:if="{{item.user_is_dianzan ==false}}" style='width:16px;height:16px;float:right;margin-right:5rpx;' src="../image/baixin.png"></image>
+              <image catchtap='mycomlike' data-plid="{{item.id}}" data-plindex='{{plind}}' wx:else style='width:16px;height:16px;float:right;margin-right:5rpx;' src="../image/staoxin.png"></image>
+            </view>
+        </view>
+        <view class="userwords_content">
+      {{item.content}}
+    </view>
+    <view catchtap="mycomment" style='display:inline-block;width:20%;text-align:right;color: #4395f5;' data-plid="{{item.id}}">回复</view>
+    </view>
+
+
+
+    
+</view>
+</view>
+<view class="no_comment" wx:if="{{dongtailist.length==0}}">
+    <image mode="aspectFill" src="../image/none_commen.png" style="width:19%;height:100rpx;margin-left:40.5%;margin-top:30rpx;"></image>
+    <view style="width:100%;height:40rpx;line-height:20rpx;font-size:24rpx;text-align:center">没有评论喔</view>
+</view>
+<view class="reply flex1" wx:if="{{comment==true}}">
+  <view class="reply_box">
+    <view class="reply_title flex1">发表评论</view>
+    <view class="reply_area">
+      <textarea bindinput="complete" auto-focus="true" focus="true" placeholder="请输入留言" placeholderStyle="color:#999;"></textarea>
+    </view>
+    <view class="reply_bot">
+      <view class="reply_liu">
+        <form bindreset="formReset" bindsubmit="formid_one" class="plate_form" reportSubmit="true">
+          <button formType="submit">取消</button>
+        </form>
+      </view>
+      <view class="reply_liu reply_hui">
+        <form bindreset="formReset" bindsubmit="commentact" class="plate_form" reportSubmit="true">
+          <button formType="submit">发表</button>
+        </form>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="reply flex1" wx:if="{{reward==true}}">
+  <view class="reply_box" style='height:115px;'>
+    <view class="reply_title flex1">打赏动态</view>
+    <view class="reply_area" style='padding:5rpx 10rpx;'>
+      <view style='display:inline-block;line-height:36px;'>打赏金额:</view>
+      <view style='display:inline-block;float:right;padding-top:16rpx;margin-left:10rpx'>元</view>
+      <view style='float:right;text-align:right;padding-top:9rpx;'>
+        <input type='digit' focus="true" bindinput="complete1" placeholder="0.00" placeholderStyle="color:#999;" />
+      </view>
+    </view>
+    <view class="reply_bot">
+      <view class="reply_liu">
+        <form bindreset="formReset" bindsubmit="formid_one" class="plate_form" reportSubmit="true">
+          <button formType="submit">取消</button>
+        </form>
+      </view>
+      <view class="reply_liu reply_hui">
+        <form bindreset="formReset" bindsubmit="rewardact" class="plate_form" reportSubmit="true">
+          <button formType="submit">打赏</button>
+        </form>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+<view class="reply flex1" wx:if="{{reply==true}}">
+    <view class="reply_box">
+        <view class="reply_title flex1">留言</view>
+        <view class="reply_area">
+            <textarea bindinput="complete1" placeholder="{{reflex_name}}" placeholderStyle="color:#999;"></textarea>
+        </view>
+        <view class="reply_bot">
+            <view bindtap="reply2" class="reply_liu">
+                <form bindreset="formReset" bindsubmit="formid_one" class="plate_form" reportSubmit="true">
+                    <button formType="submit">取消</button>
+                </form>
+            </view>
+            <view bindtap="reply3" class="reply_liu reply_hui">回复</view>
+        </view>
+    </view>
+</view>
+<view class="footer">
+    <view bindtap="myreward" class="rel">
+        <view class="icon rel">
+            <image class="ab udlr" mode="widthFix" src="../image/dsred.png"></image>
+        </view>
+        <view class="nav_title center">打赏</view>
+        <form bindreset="formReset" bindsubmit="formid_one" class="plate_form" reportSubmit="true">
+            <button formType="submit"></button>
+        </form>
+    </view>
+    <view class="rel" bindtap="mylike" data-id='{{dongtailist.id}}'>
+        <view class="icon rel" >
+            <image class="ab udlr" mode="widthFix" wx:if="{{!dongtailist.user_is_dianzan}}" src="../image/zan1.png"></image>
+            <image class="ab udlr" mode="widthFix" wx:else src="../image/yzan1.png"></image>
+        </view>
+        <view class="nav_title center">点赞</view>
+        <form bindreset="formReset" bindsubmit="formid_one" class="plate_form" reportSubmit="true">
+            <button formType="submit"></button>
+        </form>
+    </view>
+    <view class="rel" bindtap="{{dongtailist.is_guanzhu==false?'follow':'unfollow'}}" data-id='{{dongtailist.userid}}'>
+        <view class="icon rel">
+            <image class="ab udlr" mode="widthFix" src="../image/Already.png" wx:if="{{dongtailist.is_guanzhu==true}}"></image>
+            <image class="ab udlr" mode="widthFix" src="../image/collection.png" wx:else></image>
+        </view>
+        <view class="nav_title center">
+            <text wx:if="{{dongtailist.is_guanzhu==true}}">取关</text>
+            <text wx:else>关注</text>
+        </view>
+        <form bindreset="formReset" bindsubmit="formid_one" class="plate_form" reportSubmit="true">
+            <button formType="submit"></button>
+        </form>
+    </view>
+    <view bindtap="mycomment" data-plid="0" class="nav_phone rel">
+        <view>我要评论</view>
+        <form bindreset="formReset" bindsubmit="formid_one" class="plate_form" reportSubmit="true">
+            <button formType="submit"></button>
+        </form>
+    </view>
+</view>
+<view class="rob_image" wx:if="{{rob_redbag==true}}">
+    <image class="ab udlr" mode="aspectFill" src="../image/red_back.png"></image>
+    <view bindtap="rob_redbag"></view>
+</view>
+

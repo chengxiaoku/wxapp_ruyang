@@ -1,0 +1,79 @@
+<view class="userwords">
+  <image class="userwords_img" src="{{pinglunlist['parent'].senduserimg}}"></image>
+  <view class="userwords_rit">
+    <view class="flex-bet">
+      <view>
+        <view class="userwords_color">{{pinglunlist['parent'].senduser}}</view>
+        <view class="userwords_color2">{{pinglunlist['parent'].new_time}}</view>
+      </view>
+      <!-- <view bindtap="reply1" class="userwords_color" data-name="{{item.name}}" data-reflex_id="{{item.id}}">回复</view> -->
+      <view>
+        <view style='float:right;line-height:16px;color:#aaa'>{{pinglunlist['parent'].heart}}</view>
+        <image catchtap='mycomlike1' style='width:16px;height:16px;float:right;margin-right:5rpx;' src="../image/staoxin.png" wx:if="{{pinglunlist['parent'].user_is_dianzan}}"></image>
+        <image catchtap='mycomlike1' wx:else style='width:16px;height:16px;float:right;margin-right:5rpx;' src="../image/baixin.png"></image>
+      </view>
+    </view>
+    <view class="userwords_content">
+      {{pinglunlist['parent'].content}}
+    </view>
+  </view>
+</view>
+
+<view style='font-size:16px;margin:10rpx 0 0 15rpx;border-bottom: 1rpx solid #eee;'>
+  全部评论
+</view>
+<view style='display:{{pinglunlist["son"]!=""?"block":"none"}};margin-bottom:80rpx' >
+<view class="userwords" style='background-color: #F2F2F2;' wx:for="{{pinglunlist['son']}}" wx:key="" wx:for-index="plind" >
+  <image class="userwords_img" src="{{item.senduserimg}}"></image>
+  <view class="userwords_rit">
+    <view class="flex-bet">
+      <view>
+        <view class="userwords_color" wx:if="{{item.parent_pinglun_id==pinglunlist['parent'].id}}">{{item.senduser}}</view>
+        <view class="userwords_color" wx:else>{{item.senduser}}<text style='color: #333;'>回复</text>{{item.userid2}}</view>
+        <view class="userwords_color2">{{item.new_time}}</view>
+      </view>
+      <!-- <view bindtap="reply1" class="userwords_color" data-name="{{item.name}}" data-reflex_id="{{item.id}}">回复</view> -->
+      <view>
+        <view style='float:right;line-height:16px;color:#aaa'>{{item.heart}}</view>
+        <image catchtap='mycomlike' data-plid="{{item.id}}" data-plindex='{{plind}}' style='width:16px;height:16px;float:right;margin-right:5rpx;' src="../image/staoxin.png" wx:if="{{item.user_is_dianzan}}"></image>
+        <image catchtap='mycomlike' data-plid="{{item.id}}" data-plindex='{{plind}}' style='width:16px;height:16px;float:right;margin-right:5rpx;' src="../image/baixin.png" wx:else></image>
+      </view>
+    </view>
+    <view class="userwords_content">
+      {{item.content}}
+    </view>
+    <view catchtap="mycomment" style='display:inline-block;width:20%;text-align:right;color: #4395f5;' data-plid="{{item.id}}">回复</view>
+  </view>
+</view>
+
+</view>
+
+<view class="no_comment" wx:if="{{pinglunlist['son']==''}}">
+  <image mode="aspectFill" src="../image/none_commen.png" style="width:19%;height:100rpx;margin-left:40.5%;margin-top:30rpx;"></image>
+  <view style="width:100%;height:40rpx;line-height:20rpx;font-size:24rpx;text-align:center">没有评论喔</view>
+</view>
+<view class="reply flex1" wx:if="{{comment==true}}">
+  <view class="reply_box">
+    <view class="reply_title flex1">发表评论</view>
+    <view class="reply_area">
+      <textarea bindinput="complete" auto-focus="true" focus="true" placeholder="请输入留言" placeholderStyle="color:#999;"></textarea>
+    </view>
+    <view class="reply_bot">
+      <view class="reply_liu">
+        <form bindreset="formReset" bindsubmit="formid_one" class="plate_form" reportSubmit="true">
+          <button formType="submit">取消</button>
+        </form>
+      </view>
+      <view class="reply_liu reply_hui">
+        <form bindreset="formReset" bindsubmit="commentact" class="plate_form" reportSubmit="true">
+          <button formType="submit">发表</button>
+        </form>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view bindtap='mycomment' data-plid="{{pinglunlist['parent'].id}}" style='padding:14rpx 10rpx 10rpx;border-top:1px #f2f2f2 solid; position: fixed;bottom: 0;width:100%;height:58rpx;background-color:white;'>
+  <input type='text' placeholder='写评论...' style='border:1px solid #e7e7eb;border-radius:30rpx;width:75%;display:inline-block;padding:0 20rpx;margin-left:20rpx;font-size:16px;' />
+  <image style='width:27px;height:27px;float:right;margin-right:40rpx;' src='../image/feiji.png'></image>
+</view>

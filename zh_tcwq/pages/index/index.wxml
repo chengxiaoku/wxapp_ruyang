@@ -1,0 +1,238 @@
+<view class="big_border">
+  <view class="body" wx:if="{{slide.length!=0}}">
+    <view class="lbbanner">
+      <view class="swiper-container">
+        <swiper autoplay="auto" bindchange="swiperChange" circular="true" class="swiper" duration="500" indicatorActiveColor="#ED414A" indicatorColor="#fff" indicatorDots="true" interval="5000">
+          <swiper-item wx:for="{{slide}}" wx:key="{{item.value}}">
+            <image bindtap="jumps" class="img" data-appid="{{item.appid}}" data-id="{{item.id}}" data-name="{{item.xcx_name}}" data-src="{{item.src}}" data-type="{{item.state}}" data-wb_src="{{item.wb_src}}" mode="aspectFill" src="{{url}}{{item.logo}}"></image>
+          </swiper-item>
+        </swiper>
+      </view>
+    </view>
+  </view>
+
+  <view class="weathernav flex-center" wx:if="{{System.zfwl_open=='1'}}">
+    <image class="weath_img" mode="widthFix" src="../image/duoyun.png" style="margin-top:-10rpx;" wx:if="{{weather=='多云'}}"></image>
+    <image class="weath_img" mode="widthFix" src="../image/qing.png" style="margin-top:-10rpx;" wx:if="{{weather=='晴'}}"></image>
+    <image class="weath_img" mode="widthFix" src="../image/dayu.png" style="margin-top:-10rpx;" wx:if="{{weather!='多云'&&weather!='晴'&&weather!='阴'}}"></image>
+    <image class="weath_img" mode="widthFix" src="../image/yin.png" style="margin-top:-10rpx;" wx:if="{{weather=='阴'}}"></image>
+    <view class="weather">
+      <view class="weatherinfo gobyndsingle">{{area}} {{temperature}}℃ {{weather}}</view>
+      <view class="weathertime">{{reporttime}} {{w1}}</view>
+    </view>
+    <!-- <view class="liulan">
+             <view>
+                <text class="">总浏览量：</text>
+                <text class="liulan_color1">{{System.total_num}}</text>
+            </view>
+            <view>
+                <text>总{{System.tzmc}}量：</text>
+                <text class="liulan_color2">{{Num}}</text>
+            </view>
+        </view> -->
+    <navigator class="flex-center search_rit" url="search">
+      <image class="searchk" src="../image/sousuo@3x.png"></image>
+      <input bindblur="bindinput" class="search_inp" placeholder="请输入{{System.tzmc}}内容搜索" placeholderStyle="color:#999;" type="text"></input>
+    </navigator>
+  </view>
+
+  <view class="recommend">
+    <scroll-view class="nav-two" scrollX="true">
+      <!-- <view bindtap="commend" class="fon {{activeIndex==index?'bold':'normal'}}" data-name="{{item}}" id="{{index}}" wx:for="{{bkarr}}" wx:key="{{item}}">{{item}}</view>  -->
+      <view bindtap="commend" class="fon bold">最新动态</view>
+      <!-- <view bindtap="commend" class="fon {{activeIndex==index?'bold':'normal'}}" data-name="{{item}}" id="{{index}}">好友动态</view> -->
+    </scroll-view>
+  </view>
+
+  <view class="yelist" hidden="{{bkname!='最新动态'}}">
+    <view class="content" wx:if="{{dongtailist.length!=0}}" wx:for-index="index" wx:for="{{dongtailist}}" wx:key="{{item.value}}">
+      <view class="content_top">
+        <view class="content_left">
+          <image class="content_img" src="{{item.img}}" wx:if="{{item.img!=null}}"></image>
+          <image class="content_img" src="{{url}}{{item.img}}" wx:else></image>
+          <view class="content_zhong">
+
+            <view class="content_name">{{item.name}}</view>
+
+            <view class="content_text">
+              <!-- <view class="content_zhi color2">置顶</view> -->
+              <!-- <view class="content_zhi color1" wx:if="{{item.tz.type_name!=null}}">1</view>
+                            <view class="content_zhi color1" wx:if="{{item.tz.type2_name!=null}}">2</view> 
+              <view class="content_zhi" wx:if="{{item.tz.hb_money>0}}">
+                <image mode="aspectFill" src="../image/hongbao.gif" style="width:55rpx;height:55rpx;"></image>
+              </view>-->
+            </view>
+          </view>
+        </view>
+        <view bindtap="unfollow" class="content_right" data-id="{{item.userid}}" wx:if="{{item.is_guanzhu==true}}" data-index="{{index}}">
+          取消关注
+        </view>
+        <view bindtap="follow" class="content_right" data-index="{{index}}" data-id="{{item.userid}}" wx:else>
+          点击关注
+        </view>
+      </view>
+      <view bindtap="see" class="content_wen gobyndmulit rel" data-id="{{item.id}}">
+        <form bindreset="formReset" bindsubmit="formid_one" class="plate_form" reportSubmit="true">
+          <button formType="submit"></button>
+        </form>
+        {{item.content}}</view>
+      <!-- <view bindtap="see" class="content_wen" data-id="{{item.tz.id}}">
+        <view wx:for="{{item.label}}" wx:key="{{item.value}}">{{item.label_name}}</view>
+      </view> -->
+      <view class="content_picture" wx:if="{{item.image_list!=''}}">
+        <view wx:for="{{item.image_list}}" wx:for-item="ilitem" wx:key="{{item.value}}">
+          <image bindtap="previewImage" mode="aspectFill" src="{{url}}{{ilitem}}" style="border-radius:10rpx;"></image>
+        </view>
+      </view>
+      <view class="video-box" style="width:86px;height:77px;" wx:if="{{item.veido!='' && item.veido}}"  objectFit="contain">
+      <video wx:if="{{item.veido != 'undefined'}}" class="video" controls="{{control}}" autoplay="true" loop="true" muted="true" style="width:86px;height:77px;" src="http://cweekend.cn/ruyang/web/video/{{item.veido}}"></video>
+    </view>
+      <view class="content_chakan" data-id="{{item.id}}">
+        <view class="content_info time1">{{item.new_time}}</view>
+        <view>
+          <view style='font-size: 24rpx;margin-right:30rpx;display:inline-block' bindtap='myreward' data-id='{{item.id}}' data-userid='{{item.userid}}' data-index="{{index}}">
+            <image style='width:15px;height:18px;' src="../image/bag.png"></image>
+          </view>
+          <view style='font-size: 24rpx;margin-right:30rpx;display:inline-block' bindtap='mylike' data-index="{{index}}"  wx:if="{{item.user_is_dianzan==false}}" data-id='{{item.id}}'>
+            <image style='width:18px;height:18px;' src="../image/zan.png"></image>
+          </view>
+          <view style='font-size: 24rpx;margin-right:30rpx;display:inline-block' bindtap='mylike' data-index="{{index}}" data-id='{{item.id}}' wx:else >
+            <image style='width:18px;height:18px;' src="../image/thumbs_up.png"></image>
+          </view>
+          <view style='font-size: 24rpx;display:inline-block' bindtap='mycomment' data-id='{{item.id}}' data-index="{{index}}">
+            <image style='width:19px;height:19px;' src="../image/duihua.png"></image>
+          </view>
+        </view>
+
+      </view>
+      <!-- <view bindtap="see" class="content_chakan" data-id="{{item.tz.id}}" wx:if="{{System.is_tzdz=='1'&&item.tz.address!=''}}">
+                <view class="content_info">
+                    <image mode="widthFix" src="../image/address3.png"></image>
+                    <text>{{item.tz.address}}</text>
+                </view>
+            </view> -->
+      <view class="content_liulan">
+        <!-- <image class="eye" src="../image/liulan.png"></image>
+                <view class="content_num">{{item.tz.views}}</view>
+                <view class="content_ren">人浏览</view> -->
+
+        <view class="zannum">
+          <view style='display:inline-block;padding:0 15px;'>
+            <image class="zan" src="../image/thumbs_up.png"></image>
+            {{item.dianzan_sum}} 人点赞
+            <block wx:for="{{item.dashanglist}}" wx:for-item="dsitem" wx:key="" wx:for-index="ind">
+              <view style="color:red;display:inline-block;margin-left:6rpx;" wx:if="{{ind !=(item.dashanglist.length-1) }}">{{dsitem.name}}打赏{{dsitem.dashang_money}},</view>
+              <view style="color:red;display:inline-block;margin-left:6rpx;" wx:else>{{dsitem.name}}打赏{{dsitem.dashang_money}}</view>
+              <view style="color:red;display:inline-block;margin-left:6rpx;" wx:if="{{ind ==6 }}">...</view>
+            </block>
+          </view>
+
+        </view>
+        <view style='border-top:1px solid #ddd;height:1px;width:95%;'></view>
+
+        <block wx:for="{{item.pinglunlist}}" wx:key="" wx:for-item="plitem" wx:if="{{item.pinglunlist!=null}}" wx:for-index="plind">
+          <view style='padding:5px 30rpx;'>
+            <view style='height:25px;'>
+              <view style='width:83%;display:inline-block;line-height:25px;'>
+                <view style='display:inline-block;'>
+                  <font style="color:#2cb2f0">{{plitem.senduser}}</font> : {{plitem.content}} </view>
+              </view>
+              <view style='display:inline-block;float:right;line-height:25px;height:25px;'>
+                <image style='display:inline-block;width:16px;height:16px;margin-top:10rpx;' src="../image/baixin.png" wx:if="{{plitem.user_is_dianzan ==false}}" bindtap='mycomlike' data-id='{{plitem.id}}' data-index='{{index}}' data-plindex='{{plind}}'></image>
+                <image style='display:inline-block;width:16px;height:16px;margin-top:10rpx;' src="../image/staoxin.png" wx:else bindtap='mycomlike' data-id='{{plitem.id}}' data-index='{{index}}' data-plindex='{{plind}}'></image>
+                <view style='float:right;margin-left:5rpx;color:#666;'>{{plitem.heart}}</view>
+              </view>
+            </view>
+          </view>
+        </block>
+
+
+      </view>
+    </view>
+
+
+
+    <!-- <navigator class="loading rel" openType="switchTab" url="../type/type" wx:if="{{refresh_top==true&&seller.length!=0}}">
+      点击查看更多 >
+    </navigator> -->
+    <view class="loading rel" wx:if="{{refresh_top==false}}">
+      <image class="ab udlr" mode="widthFix" src="../image/loading.gif"></image>
+    </view>
+    <view class="none_store" wx:if="{{seller.length==0}}">
+      <view class="rel">
+        <image class="ab udlr img2" mode="aspectFill" src="../image/tie2.png"></image>
+      </view>
+      <view class="center">暂时没有新动态{{System.tzmc}}</view>
+    </view>
+  </view>
+
+
+
+
+</view>
+<navigator url="../dongtai/dongtai" open-type="navigate">
+  <button class="kefu">发布</button>
+</navigator>
+
+
+<view class="reply flex1" wx:if="{{comment==true}}">
+  <view class="reply_box">
+    <view class="reply_title flex1">发表评论</view>
+    <view class="reply_area">
+      <textarea bindinput="complete" auto-focus="true" focus="true" placeholder="请输入留言" placeholderStyle="color:#999;"></textarea>
+    </view>
+    <view class="reply_bot">
+      <view class="reply_liu">
+        <form bindreset="formReset" bindsubmit="formid_one" class="plate_form" reportSubmit="true">
+          <button formType="submit">取消</button>
+        </form>
+      </view>
+      <view class="reply_liu reply_hui">
+        <form bindreset="formReset" bindsubmit="commentact" class="plate_form" reportSubmit="true">
+          <button formType="submit">发表</button>
+        </form>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+<view class="reply flex1" wx:if="{{reward==true}}">
+  <view class="reply_box" style='height:115px;'>
+    <view class="reply_title flex1">打赏动态</view>
+    <view class="reply_area" style='padding:5rpx 10rpx;'>
+      <view style='display:inline-block;line-height:36px;'>打赏金额:</view>
+      <view style='display:inline-block;float:right;padding-top:16rpx;margin-left:10rpx'>元</view>
+      <view style='float:right;text-align:right;padding-top:9rpx;'>
+        <input type='digit' focus="true" bindinput="complete1" placeholder="0.00" placeholderStyle="color:#999;" />
+      </view>
+    </view>
+    <view class="reply_bot">
+      <view class="reply_liu">
+        <form bindreset="formReset" bindsubmit="formid_one" class="plate_form" reportSubmit="true">
+          <button formType="submit">取消</button>
+        </form>
+      </view>
+      <view class="reply_liu reply_hui">
+        <form bindreset="formReset" bindsubmit="rewardact" class="plate_form" reportSubmit="true">
+          <button formType="submit">打赏</button>
+        </form>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<button bindtap="hddb" class="hddb" wx:if="{{System.is_kf=='1'}}">
+  <image src="../image/zd.png"></image>
+</button>
+<view class="hydlzhezhao" wx:if="{{hydl==true}}"></view>
+<view class="hydlbd" wx:if="{{hydl==true}}">
+  <image class="hydlimg" src="{{url}}{{System.tc_img}}"></image>
+  <view class="hydl">
+    <view class="hydltt">平台公告</view>
+    <view class="hydlnr">{{System.tc_gg}}</view>
+  </view>
+  <button bindgetuserinfo="updateUserInfo" class="hydlqueren" openType="getUserInfo" style="background:{{System.color}}">朕已阅</button>
+</view>
