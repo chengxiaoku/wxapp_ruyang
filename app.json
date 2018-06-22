@@ -1,7 +1,8 @@
 {
     "pages": [
-        "zh_tcwq/pages/logs/logs",
         "zh_tcwq/pages/index/index",
+        "zh_tcwq/pages/logs/logs",
+        
         "zh_tcwq/pages/bounty/bounty",
         "zh_tcwq/pages/dongtai/dongtai",
         "zh_tcwq/pages/dongtaidt/dongtaidt",

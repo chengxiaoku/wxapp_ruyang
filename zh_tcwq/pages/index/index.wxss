@@ -867,7 +867,7 @@ body {
 
 .content_right {
     padding:1rpx 15rpx;
-    color: #FFB90F;
+    color: #FF8247;
     font-size: 12px;
     margin-right: 50rpx;
     /* background: #ed414a; */
