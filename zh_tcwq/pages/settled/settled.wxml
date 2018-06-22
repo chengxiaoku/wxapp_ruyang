@@ -39,12 +39,12 @@
                     <view class="input iinlin_block">
                         <text bindtap="choice" wx:if="{{facilities==null||facilities==''}}">选择店内设施</text>
                         <text bindtap="choice" wx:if="{{facilities!=null}}">
-                            <text wx:for="{{facilities}}">{{item}}</text>
+                            <text wx:for="{{facilities}}" wx:key="">{{item}}</text>
                         </text>
                     </view>
                     <view class="checkbox rel iinlin_block border2">
                         <checkbox-group bindchange="checkboxChange">
-                            <label class="checkboxs" wx:for="{{items}}">
+                            <label class="checkboxs" wx:for="{{items}}" wx:key="">
                                 <checkbox checked="{{item.checked}}" style="transform:scale(.8)" value="{{item.name}}"></checkbox>{{item.value}}
               </label>
                         </checkbox-group>
@@ -126,7 +126,7 @@
                         <text style="color:#999;float:right" wx:if="{{lunbo_len>=1}}">已选择{{lunbo_len}}张</text>
                     </view>
                     <view class="store_image">
-                        <view class="carousel_img1 rel" wx:if="{{images!=null}}" wx:for="{{images}}">
+                        <view class="carousel_img1 rel" wx:if="{{images!=null}}" wx:for="{{images}}" wx:key="">
                             <view bindtap="delete" class="delete ab" data-index="{{index}}">
                                 <image class="ab" mode="aspectFill" src="../image/delete.png"></image>
                             </view>
@@ -147,7 +147,7 @@
                         <text style="color:#999;float:right">已选择{{upload_img_length}}张</text>
                     </view>
                     <view class="store_image">
-                        <view class="carousel_img1 rel" wx:if="{{upload_img_length!=null}}" wx:for="{{upload_img}}">
+                        <view class="carousel_img1 rel" wx:if="{{upload_img_length!=null}}" wx:for="{{upload_img}}" wx:key="">
                             <view bindtap="delete2" class="delete ab" data-index="{{index}}">
                                 <image class="ab" mode="aspectFill" src="../image/delete.png"></image>
                             </view>
@@ -177,13 +177,13 @@
             {{getmsg}}
           </view>
                 </view>
-                <view class="getPhoneNumber" wx:if="{{sms==false}}">
+                <!-- <view class="getPhoneNumber" wx:if="{{sms==false}}">
           手机号验证：
           <text wx:if="{{num!=null}}">{{num}}</text>
                     <button bindgetphonenumber="getPhoneNumber" openType="getPhoneNumber" wx:if="{{num==null}}">获取手机号</button>
                     <button style="background:#ccc;" wx:if="{{num!=null}}">验证成功</button>
-                </view>
-                <view class="cost border1 border2">
+                </view> -->
+                <!-- <view class="cost border1 border2">
                     <view class="carousel">入驻时间</view>
                     <view class="cost_content">
                         <view bindtap="cost1" class="flex-center cost_money2" id="{{index}}" wx:for="{{stick}}">
@@ -193,7 +193,7 @@
                             <view class="cost_money">{{item.array}}</view>
                         </view>
                     </view>
-                </view>
+                </view> -->
                 <view class="read">
                     <radio checked="true" color="#ff6161" style="zoom:80%"></radio>
                     <view>我已阅读并同意

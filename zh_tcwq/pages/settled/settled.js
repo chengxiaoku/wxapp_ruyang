@@ -700,8 +700,7 @@ Page({
         if (console.log(imgArray), console.log(uploaded), 0 == imgArray.length) var A = ""; else A = imgArray.join(",");
         if (0 == uploaded.length) var M = ""; else M = uploaded.join(",");
         var C = "";
-        if ("" != w && null != w || (w = ""), console.log(a.data, u, r), "" == d ? C = "请输入商家名称" : "" == p ? C = "请输入关键字" : "" == g ? C = "请输入详细地址" : "1" == a.data.xtxx.is_dnss && null == s ? C = "请勾选店内设施" : "1" == a.data.xtxx.is_dnss && 0 == s.length ? C = "请勾选店内设施" : "1" == a.data.xtxx.is_yysj && "00:00" == m ? C = "请输入营业开始时间" : "1" == a.data.xtxx.is_yysj && "00:00" == f ? C = "请输入营业结束时间" : "" == h ? C = "请输入联系电话" : "" == y ? C = "请输入公告说明" : "1" == a.data.xtxx.is_img && null == u ? C = "请上传营业执照照片" : "1" == a.data.xtxx.is_img && null == r ? C = "请上传法人身份证正面照片" : 540 <= w.length ? C = "内容超出" : 0 == a.data.sms ? null == a.data.num && (C = "请进行手机号验证") : 1 == a.data.sms && null == a.data.yz_code && (C = "请进行手机号验证"), 
-        "" != C) wx.showModal({
+        if ("" != w && null != w || (w = ""), console.log(a.data, u, r), "" == d ? C = "请输入商家名称" : "" == p ? C = "请输入关键字" : "" == g ? C = "请输入详细地址" : "1" == a.data.xtxx.is_dnss && null == s ? C = "请勾选店内设施" : "1" == a.data.xtxx.is_dnss && 0 == s.length ? C = "请勾选店内设施" : "1" == a.data.xtxx.is_yysj && "00:00" == m ? C = "请输入营业开始时间" : "1" == a.data.xtxx.is_yysj && "00:00" == f ? C = "请输入营业结束时间" : "" == h ? C = "请输入联系电话" : "" == y ? C = "请输入公告说明" : "1" == a.data.xtxx.is_img && null == u ? C = "请上传营业执照照片" : "1" == a.data.xtxx.is_img && null == r ? C = "请上传法人身份证正面照片" : 540 <= w.length ? C = "内容超出" : 0 == a.data.sms , "" != C) wx.showModal({
             title: "提示",
             content: C,
             showCancel: !0,
@@ -782,14 +781,7 @@ Page({
                         money: I
                     },
                     success: function(e) {
-                        wx.requestPayment({
-                            timeStamp: e.data.timeStamp,
-                            nonceStr: e.data.nonceStr,
-                            package: e.data.package,
-                            signType: e.data.signType,
-                            paySign: e.data.paySign,
-                            success: function(e) {
-                                console.log("这里是支付成功"), console.log(e), app.util.request({
+                       app.util.request({
                                     url: "entry/wxapp/store",
                                     cachetime: "0",
                                     data: {
@@ -872,14 +864,7 @@ Page({
                                     }
                                 });
                             },
-                            fail: function(e) {
-                                console.log(e), wx.showToast({
-                                    title: "支付失败",
-                                    duration: 1e3
-                                });
-                            }
-                        });
-                    }
+                            
                 });
             } else wx.showToast({
                 title: "验证码错误",
