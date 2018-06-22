@@ -1,2 +1,1 @@
-# wxapp_ruyang
-# Geek分支
+# wxapp

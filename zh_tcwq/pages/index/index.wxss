@@ -865,11 +865,12 @@ body {
 }
 
 .content_right {
-    padding: 10rpx;
-    color: white;
-    font-size: 14px;
+    padding:1rpx 15rpx;
+    color: #FFB90F;
+    font-size: 12px;
     margin-right: 50rpx;
-    background: #ed414a;
+    /* background: #ed414a; */
+    border: 1px solid #FF8247;
     border-radius: 10rpx;
 }
 
@@ -897,8 +898,8 @@ body {
 }
 
 .content_img {
-    width: 95rpx;
-    height: 95rpx;
+    width: 85rpx;
+    height: 85rpx;
 }
 
 .content_zhong {
@@ -906,7 +907,7 @@ body {
 }
 
 .content_name {
-    font-size: 32rpx;
+    font-size: 30rpx;
     color: #1eabf0;
     width: 300rpx;
     height: 40rpx;

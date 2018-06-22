@@ -1,6 +1,6 @@
 <view style="width:100%;overflow-x:hidden">
     <view class="container">
-        <view class="searchbox">
+        <!-- <view class="searchbox">
             <input bindinput="bindinput" class="input" placeholder="请输入您要查询的关键词"></input>
             <button bindtap="search" class="search">搜索</button>
             <view class="ssjg" wx:if="{{djss}}">
@@ -10,7 +10,7 @@
                 </scroll-view>
                 <button bindtap="sqss">收起</button>
             </view>
-        </view>
+        </view> -->
         <view class="body" wx:if="{{slide.length!=0}}">
             <view class="banner">
                 <view class="swiper-container">
@@ -32,7 +32,7 @@
                 </swiper-item>
             </swiper>
         </view>
-        <swiper autoplay="true" circular="true" class="classify" duration="1000" interval="4000" style="height:{{height}}rpx" wx:if="{{nav.length>0}}">
+        <!-- <swiper autoplay="true" circular="true" class="classify" duration="1000" interval="4000" style="height:{{height}}rpx" wx:if="{{nav.length>0}}">
             <swiper-item wx:for="{{nav}}" wx:key="unique">
                 <view bindtap="store_type_id" data-id="{{item.id}}" data-name="{{item.type_name}}" wx:for="{{item}}" wx:key="{{item.value}}">
                     <view class="classify_logo rel">
@@ -41,7 +41,7 @@
                     <view class="classify_name gobyndsingle center">{{item.type_name}}</view>
                 </view>
             </swiper-item>
-        </swiper>
+        </swiper> -->
         <!-- <view class="join flex-center">
             <view bindtap="sellted" class="jiony flex1" wx:if="{{System.is_rz=='1'}}">我要入驻</view>
             <view class="jiony flex1" wx:else>最新入驻</view>
