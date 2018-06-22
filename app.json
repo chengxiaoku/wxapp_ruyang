@@ -37,7 +37,6 @@
         "zh_tcwq/pages/infodetial/infodetial",
         "zh_tcwq/pages/fabu/edit/edit",
         "zh_tcwq/pages/fabu/fabu/fabu",
-        "zh_tcwq/pages/sellerinfo/sellerinfo",
         "zh_tcwq/pages/marry/marry",
         "zh_tcwq/pages/handinfo/handinfo",
         "zh_tcwq/pages/secondhand/secondhand",
@@ -49,7 +48,7 @@
         "zh_tcwq/pages/notice/notice",
         "zh_tcwq/pages/Collection/Collection",
         "zh_tcwq/pages/fabu/knows/knows",
-  
+        
         "zh_tcwq/pages/logs/publish",
         "zh_tcwq/pages/logs/index",
         "zh_tcwq/pages/logs/income",
@@ -71,9 +70,7 @@
         "zh_tcwq/pages/message/message_info",
         "zh_tcwq/pages/mypost/modify",
         "zh_tcwq/pages/mypost/mypost",
-        "zh_tcwq/pages/sellerinfo/shop",
-        "zh_tcwq/pages/sellerinfo/place_order",
-        "zh_tcwq/pages/sellerinfo/good_info",
+
         "zh_tcwq/pages/redbag/redinfo/redinfo",
         "zh_tcwq/pages/redbag/sent",
         "zh_tcwq/pages/redbag/welfare",
@@ -88,8 +85,7 @@
         "zh_tcwq/pages/yellow_page/mine_yellow",
         "zh_tcwq/pages/redbag/redinfo/see_rob",
         "zh_tcwq/pages/type/type",
-        "zh_tcwq/pages/spzx/spzx",
-        "zh_tcwq/pages/spzx/spzxinfo",
+        
         "zh_tcwq/pages/index/search",
         "zh_tcwq/pages/qd/qd",
         "zh_tcwq/pages/qd/pm",

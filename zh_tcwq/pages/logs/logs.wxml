@@ -109,7 +109,7 @@
         <view class="list_alllist flex-center">
             <image class="list_right" src="../image/huise@2x.png"></image>
         </view>
-    </view>-->
+    </view>
     <view bindtap="jfsc" class="banner_list flex-bet" wx:if="{{System.is_jf==1}}">
         <view class="list_all flex-center">
             <image class="list_allimg" src="../image/welfare.png"></image>
@@ -117,8 +117,8 @@
         </view>
         <view class="list_alllist flex-center">
             <image class="list_right" src="../image/huise@2x.png"></image>
-        </view>
-    </view>
+        </view>  
+    </view>-->
 </view>
 <view class="banner">
     <view bindtap="content" class="banner_list flex-bet">
