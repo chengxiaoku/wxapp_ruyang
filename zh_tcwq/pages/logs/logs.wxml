@@ -1,9 +1,9 @@
 <view class="header">
     <image class="header_back" src="../image/background2.png"></image>
     <view class="header_box">
-        <view class="header_set">
+        <!-- <view class="header_set">
             <image bindtap="address" src="../image/set.png"></image>
-        </view>
+        </view> -->
         <navigator class="header_set1" url="../qd/qd">
             <image src="../image/qdimg.png"></image>
             <view>我要签到</view>
