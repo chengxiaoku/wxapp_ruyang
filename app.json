@@ -1,6 +1,7 @@
 {
     "pages": [
-        
+        "zh_tcwq/pages/type/type",
+        "zh_tcwq/pages/logs/logs",
         "zh_tcwq/pages/index/index",
         "zh_tcwq/pages/bounty/bounty",
         "zh_tcwq/pages/dongtai/dongtai",
@@ -47,7 +48,7 @@
         "zh_tcwq/pages/notice/notice",
         "zh_tcwq/pages/Collection/Collection",
         "zh_tcwq/pages/fabu/knows/knows",
-        "zh_tcwq/pages/logs/logs",
+        
         "zh_tcwq/pages/logs/publish",
         "zh_tcwq/pages/logs/index",
         "zh_tcwq/pages/logs/income",
@@ -85,7 +86,7 @@
         "zh_tcwq/pages/redbag/mine_order_info",
         "zh_tcwq/pages/yellow_page/mine_yellow",
         "zh_tcwq/pages/redbag/redinfo/see_rob",
-        "zh_tcwq/pages/type/type",
+      
         "zh_tcwq/pages/spzx/spzx",
         "zh_tcwq/pages/spzx/spzxinfo",
         "zh_tcwq/pages/index/search",

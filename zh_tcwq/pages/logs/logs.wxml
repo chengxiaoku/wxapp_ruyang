@@ -8,10 +8,10 @@
             <image src="../image/qdimg.png"></image>
             <view>我要签到</view>
         </navigator>
-        <navigator class="header_set2" url="../integral/myintegral" wx:if="{{System.is_jf==1}}">
+        <!--<navigator class="header_set2" url="../integral/myintegral" wx:if="{{System.is_jf==1}}">
             <image src="../image/jifen.png"></image>
             <view>我的积分</view>
-        </navigator>
+        </navigator>-->
         <view class="flex3">
             <image class="picture" src="{{avatarUrl}}"></image>
             <view class="header_name">{{nickName}}</view>
