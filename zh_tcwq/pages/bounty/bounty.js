@@ -250,11 +250,8 @@ Page((_defineProperty(_Page = {
         });
       }
     }), app.util.request({
-      url: "entry/wxapp/type",
+      url: "entry/wxapp/mytype",
       cachetime: "0",
-      data:{
-        mytype:1
-      },
       success: function (e) {
         var t = e.data;
         t.length <= 5 ? i.setData({
@@ -322,7 +319,8 @@ Page((_defineProperty(_Page = {
     cachetime: "0",
     data: {
       page: o.data.page,
-      cityname: a
+      cityname: a,
+      mytype: 1
     },
     success: function (e) {
       if (console.log(e.data), 0 == e.data.length) o.setData({
@@ -382,7 +380,8 @@ Page((_defineProperty(_Page = {
     url: "entry/wxapp/list2",
     cachetime: "0",
     data: {
-      keywords: t
+      keywords: t,
+      mytype: 1
     },
     success: function (e) {
       0 == e.data.length ? wx.showModal({

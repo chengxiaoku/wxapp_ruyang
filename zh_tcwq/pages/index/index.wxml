@@ -44,7 +44,7 @@
     <image class="ad-icon" mode="scaleToFill" src="../image/guangbo.png"></image>
     <swiper autoplay="true" circular="true" class="newest_content gobyndsingle" interval="2000" vertical="true">
       <swiper-item wx:for="{{msgList}}" wx:key="{{item.value}}">
-        <view bindtap="notice" class="adinfo gobyndsingle" data-id="{{item.id}}" style="color:#ED414A">
+        <view bindtap="notice" class="adinfo gobyndsingle" data-id="{{item.id}}" style="color:#FA8072">
           <rich-text nodes="{{item.title}}"></rich-text>
         </view>
       </swiper-item>

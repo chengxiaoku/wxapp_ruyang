@@ -71,10 +71,10 @@
 
 
       <view  class="content_right" data-id="{{item.tz.id}}">
-        <view style='color:#FF8247; padding:1rpx 15rpx;border-radius: 10rpx;margin-right:20rpx;border:1px solid #FF8247'>
+        <view style='color:#FF8247; padding:1rpx 13rpx;border-radius: 10rpx;margin-right:20rpx;border:1px solid #FF8247'>
           {{item.tz.money_clf}}元
         </view>
-        <view bindtap="see" style='color:#FF8247; padding:1rpx 15rpx;border-radius: 10rpx;border:1px solid #FF8247' data-id="{{item.tz.id}}">
+        <view bindtap="see" style='color:#FF8247; padding:1rpx 13rpx;border-radius: 10rpx;border:1px solid #FF8247' data-id="{{item.tz.id}}">
           接任务
         </view>
       </view>
