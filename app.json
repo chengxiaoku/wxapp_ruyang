@@ -1,6 +1,6 @@
 {
     "pages": [
-        
+        "zh_tcwq/pages/logs/logs",
         "zh_tcwq/pages/index/index",
         "zh_tcwq/pages/bounty/bounty",
         "zh_tcwq/pages/dongtai/dongtai",
@@ -49,7 +49,7 @@
         "zh_tcwq/pages/notice/notice",
         "zh_tcwq/pages/Collection/Collection",
         "zh_tcwq/pages/fabu/knows/knows",
-        "zh_tcwq/pages/logs/logs",
+  
         "zh_tcwq/pages/logs/publish",
         "zh_tcwq/pages/logs/index",
         "zh_tcwq/pages/logs/income",

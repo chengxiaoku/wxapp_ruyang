@@ -154,7 +154,7 @@
     <view bindtap="settled" class="banner_list flex-bet" wx:if="{{System.is_rz=='1'}}">
         <view class="list_all flex-center">
             <image class="list_allimg" src="../image/feiji.png"></image>
-            <view class="list_alltext">我要入驻</view>
+            <view class="list_alltext">商家入驻</view>
         </view>
         <view class="list_alllist flex-center">
             <view class="banner_text">轻松合作,商机无限</view>
