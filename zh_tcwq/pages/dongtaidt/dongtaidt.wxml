@@ -21,16 +21,23 @@
         <view class="user_img fl rel">
             <image class="ab ud" src="{{dongtailist.img}}"></image>
         </view>
-        <view class="user_info fl rel">
+        <view class="user_info fl rel" wx:if="{{dongtailist.dili}}">
             <view class="info_name"></view>
             <view class="info_label">
                 <!-- <view class="fl color2 color" wx:if="{{post.top==1}}">置顶</view> 
                 <view class="fl color1 color" wx:if="{{post.type_name!=null}}">{{post.type_name}}</view>-->
                 <view style='font-size:16px;padding:0;' >{{dongtailist.name}}</view>
             </view>
-            <view class="info_name1">
-                <image mode="widthFix" src="../image/xiangqingdizhi@3x.png"></image>
+            <view class="info_name1" >
+                <image mode="widthFix" src="../image/xiangqingdizhi@3x.png" ></image>
                 <text>{{dongtailist.dili}}</text>
+            </view>
+        </view>
+
+        <view class="user_info fl rel" wx:else>
+            <view class="info_name" style='height:70rpx'></view>
+            <view class="info_label">
+                <view style='font-size:16px;padding:0;' >{{dongtailist.name}}</view>
             </view>
         </view>
     </view>
@@ -39,11 +46,11 @@
             <text>{{dongtailist.content}}</text>
         </view>
         <view class="imgnum" wx:if="{{dongtailist.image_list!=''}}">
-            <image bindtap="previewImage" wx:key=""  mode="widthFix" src="{{url}}{{item}}" wx:for="{{dongtailist.image_list}}"></image>
+            <image bindtap="previewImage" wx:key=""  mode="widthFix" src="{{url}}{{item}}" wx:for="{{dongtailist.image_list}}" ></image>
         </view>
 
 <view class="imgnum"  wx:if="{{dongtailist.veido!='' && dongtailist.veido}}"  objectFit="contain">
-      <video class="video" controls="{{control}}" style='width:100%;' autoplay="true" loop="true" muted="true" src="http://cweekend.cn/ruyang/web/video/{{dongtailist.veido}}"></video>
+      <video class="video" controls="{{control}}"  style='width:100%;' autoplay="true" loop="true" muted="true" src="http://cweekend.cn/ruyang/web/video/{{dongtailist.veido}}"></video>
     </view>
 
         <form bindreset="formReset" bindsubmit="formSubmit" reportSubmit="true">

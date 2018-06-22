@@ -322,8 +322,7 @@ Page((_defineProperty(_Page = {
         cachetime: "0",
         data: {
             page: o.data.page,
-            cityname: a,
-            mytype: 2
+            cityname: a
         },
         success: function(e) {
             if (console.log(e.data), 0 == e.data.length) o.setData({

@@ -26,7 +26,6 @@ Page({
                 userid: t
             },
             success: function(n) {
-              console.log(wx.getStorageSync("uniacid"));
               console.log(n.data.data);
               var a = n.data.data;
               i.setData({ money: a})

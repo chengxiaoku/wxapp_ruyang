@@ -220,12 +220,15 @@ Page({
       
       cachetime: "0",
       success: function (t) {
+        console.log(t.data);
         wx.setStorageSync("url2", t.data);
       }
     }), app.util.request({
+      
       url: "entry/wxapp/Url",
       cachetime: "0",
       success: function (t) {
+        console.log(t.data);
          wx.setStorageSync("url", t.data), n.setData({
           url: t.data
         });
@@ -713,10 +716,10 @@ Page({
     for (var s in n) e(s);
   },
   previewImage: function (t) {
-    
-    var e = t.currentTarget.dataset.id, a = this.data.url, n = [], i = t.currentTarget.dataset.inde, o = this.data.seller;
-    for (var s in o) if (o[s].tz.id == e) {
-      var r = o[s].tz.img;
+    console.log(t.currentTarget.dataset.id)
+    var e = t.currentTarget.dataset.id, a = this.data.url, n = [], i = t.currentTarget.dataset.inde, o = this.data.dongtailist;
+    for (var s in o) if (o[s].id == e) {
+      var r = o[s].image_list;
       for (var c in r) n.push(a + r[c]);
       wx.previewImage({
         current: a + r[i],
@@ -1223,7 +1226,53 @@ Page({
       dtid: e.currentTarget.dataset.id,
       dtindex: e.currentTarget.dataset.index
     });
-  }
+  },
+
+  // 点击播放，其它视频结束
+
+  bindplay: function (e) {
+
+    var id = e.currentTarget.id         //点击id
+    console.log(e.currentTarget) 
+    console.log(this.data.playIndex)      //正在播放的id
+
+    if (!this.data.playIndex) { // 没有播放时播放视频
+
+      this.setData({
+
+        playIndex: id
+
+      })
+
+      //console.log(this.data.playIndex)
+
+      var videoContext = wx.createVideoContext(id)
+
+      videoContext.play()
+
+    } else {                    // 有播放时先将prev暂停，再播放当前点击的current
+      var videoContextPrev = wx.createVideoContext(this.data.playIndex)
+
+      // videoContextPrev.seek(0)
+
+      if (this.data.playIndex != id) {                  //不知道为什么，不加这个判断的时候这个视频会一直在播放和暂停之间切换
+        videoContextPrev.pause()
+
+      }
+
+      this.setData({
+
+        playIndex: id
+
+      })
+
+      var videoContextCurrent = wx.createVideoContext(this.data.playIndex)
+
+      videoContextCurrent.play()
+
+    }
+
+  },
  
 
 

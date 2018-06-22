@@ -1,1 +1,1 @@
-# wxapp_ruyang
+# wxapp

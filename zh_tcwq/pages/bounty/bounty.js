@@ -210,8 +210,7 @@ Page((_defineProperty(_Page = {
       url: "entry/wxapp/Storelist",
       cachetime: "0",
       data: {
-        cityname: t,
-        
+        cityname: t
       },
       success: function (e) {
         e.data.length <= 5 ? i.setData({
@@ -251,7 +250,7 @@ Page((_defineProperty(_Page = {
         });
       }
     }), app.util.request({
-      url: "entry/wxapp/mytype",
+      url: "entry/wxapp/type",
       cachetime: "0",
       data:{
         mytype:1
@@ -323,8 +322,7 @@ Page((_defineProperty(_Page = {
     cachetime: "0",
     data: {
       page: o.data.page,
-      cityname: a,
-      mytype:1
+      cityname: a
     },
     success: function (e) {
       if (console.log(e.data), 0 == e.data.length) o.setData({
