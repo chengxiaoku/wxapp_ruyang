@@ -843,7 +843,7 @@ button::after {
     position: absolute;
     top: 0;
     left: 0;
-    background: none;
+    background:none;
     color: #333;
     font-size: 26rpx;
 }

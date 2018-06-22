@@ -1,0 +1,16 @@
+<form bindreset="formReset" bindsubmit="submitact" reportSubmit="true" class="form">
+  <view class="content">
+    <view class="miaoshu_box">
+      <textarea class="miaoshu" maxlength="540" name="content" placeholder="写评论"></textarea>
+    </view>
+    <button class="confirm" disabled="{{disabled}}" formType="submit">确认发布</button>
+    <button class="cancle" disabled="{{disabled}}" bindtap="cancel" >取消</button>
+  </view>
+ 
+  
+  <!-- <view class="base" wx:if="{{checked==true}}">
+    <view class="rel">选择置顶让更多人看到</view>
+    <view bindtap="selected" class="array rel" id="{{index}}" wx:for="{{stick}}" wx:key="*this">{{item.array}}</view>
+    <view bindtap="cancel" class="rel">取消置顶</view>
+  </view> -->
+</form>

@@ -14,32 +14,40 @@ Page({
    */
   onLoad: function (t) {
     var that = this;
+    that.data.userid = t.userid
+    that.data.dtid = t.dtid
+    that.data.plid = t.plid
+    that.getpllist()
+  },
+  getpllist(){
+    var that = this;
     app.util.request({
       url: "entry/wxapp/pingluninfo",
       data: {
-        dongtaiid: t.dtid,   //动态id
-        pinglunid: t.plid,  //评论id
-        userid: t.userid, //用户id
+        dongtaiid: that.data.dtid,   //动态id
+        pinglunid: that.data.plid,  //评论id
+        userid: that.data.userid, //用户id
       },
       success: function (res) {
         console.log(res)
         if (res.data.success) {
 
           that.setData({
-            userid: t.userid,
             pinglunlist: res.data.data,
-            dongtaiid: t.dtid
           })
         }
       }
     })
   },
-
+  onShow: function () {
+    this.getpllist()
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+    this.getpllist()
+    wx.stopPullDownRefresh();
   },
 
   //评论接口
@@ -96,9 +104,8 @@ Page({
         user_id: that.data.userid
       },
       success: function (t) {
-        1 == t.data.state ? that.setData({
-          comment: !0,
-          plid: e.currentTarget.dataset.plid
+        1 == t.data.state ? wx.navigateTo({ 
+          url: '../comment/comment?dtid='+ that.data.dtid +"&pid="+e.currentTarget.dataset.plid
         }) : wx.showModal({
           title: "提示",
           content: "您的账号异常，请尽快联系管理员",
@@ -198,4 +205,6 @@ Page({
       comment: !1
     });
   },
+
+ 
 })

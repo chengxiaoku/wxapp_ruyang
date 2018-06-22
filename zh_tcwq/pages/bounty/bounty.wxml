@@ -31,7 +31,7 @@
         <view class="classify_logo rel">
           <image class="ab udlr" mode="aspectFill" src="{{url}}{{item.img}}" style="border-radius:10rpx;"></image>
         </view>
-        <view class="classify_name center gobyndsingle">{{item.type_name}}</view>
+         <view class="classify_name center gobyndsingle">{{item.type_name}}</view>
       </view>
     </swiper-item>
   </swiper>
@@ -44,13 +44,13 @@
         </view>
       </swiper-item>
     </swiper>
-  </view> -->
+  </view>
   <view class="recommend">
     <view bindtap="whole">全部</view>
     <scroll-view class="nav-two" scrollX="true">
       <view bindtap="commend" class="fon {{activeIndex==index?'bold':'normal'}}" data-index="{{index}}" id="{{index}}" wx:for="{{navs}}" wx:key="{{item.value}}">{{item.type_name}}</view>
     </scroll-view>
-  </view>
+  </view> -->
   <view class="content" wx:if="{{seller.length!=0}}" wx:for="{{seller}}" wx:key="{{item.value}}">
     <view class="content_top">
       <view class="content_left">
@@ -58,23 +58,23 @@
         <image class="content_img" src="{{url}}{{item.tz.user_img2}}" wx:else></image>
         <view class="content_zhong">
           <view class="content_name">{{item.tz.user_name}}</view>
-          <view class="content_text">
+          <!-- <view class="content_text">
             <view class="content_zhi color2" wx:if="{{item.tz.top==1}}">置顶</view>
             <view class="content_zhi color1" wx:if="{{item.tz.type_name!=null}}">{{item.tz.type_name}}</view>
             <view class="content_zhi color1" wx:if="{{item.tz.type2_name!=null}}">{{item.tz.type2_name}}</view>
             <view class="content_zhi" wx:if="{{item.tz.hb_money>0}}">
               <image mode="aspectFill" src="../image/hongbao.gif" style="width:55rpx;height:55rpx;"></image>
             </view>
-          </view>
+          </view> -->
         </view>
       </view>
 
 
       <view  class="content_right" data-id="{{item.tz.id}}">
-        <view style=' padding:5rpx 10rpx;background: #ed414a;border-radius: 10rpx;margin-right:20rpx;'>
+        <view style='color:#FF8247; padding:1rpx 15rpx;border-radius: 10rpx;margin-right:20rpx;border:1px solid #FF8247'>
           {{item.tz.money_clf}}元
         </view>
-        <view bindtap="see" style='padding:5rpx 10rpx;background: #ed414a;border-radius: 10rpx;' data-id="{{item.tz.id}}">
+        <view bindtap="see" style='color:#FF8247; padding:1rpx 15rpx;border-radius: 10rpx;border:1px solid #FF8247' data-id="{{item.tz.id}}">
           接任务
         </view>
       </view>

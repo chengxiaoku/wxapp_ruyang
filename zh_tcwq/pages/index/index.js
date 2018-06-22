@@ -875,7 +875,7 @@ Page({
       first: 1
     }), wx.removeStorageSync("city_type");
   },
-  onShow: function () { },
+  onShow: function () { this.getdtlist();},
   onHide: function () { },
   onUnload: function () {
     wx.removeStorageSync("city_type");
@@ -887,7 +887,7 @@ Page({
       activeIndex: 0,
       swipecurrent: 0,
       refresh_top: !1
-    }), this.reload(), wx.stopPullDownRefresh();
+    }), this.reload(),this.getdtlist(), wx.stopPullDownRefresh();
   },
   onReachBottom: function () {
     //console.log("上拉触底");
@@ -1212,11 +1212,14 @@ Page({
   },
   //点击评论按钮
   mycomment: function (e){
-    this.setData({
-      comment: !0,
-      dtid: e.currentTarget.dataset.id,
-      dtindex: e.currentTarget.dataset.index
+    wx.navigateTo({ 
+      url: '../comment/comment?dtid='+ e.currentTarget.dataset.id +"&pid=0"
     });
+    // this.setData({
+    //   comment: !0,
+    //   dtid: e.currentTarget.dataset.id,
+    //   dtindex: e.currentTarget.dataset.index
+    // });
   },
   //点击打赏按钮
   myreward: function (e) {

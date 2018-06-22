@@ -6,11 +6,13 @@
         "zh_tcwq/pages/dongtai/dongtai",
         "zh_tcwq/pages/dongtaidt/dongtaidt",
 
+        "zh_tcwq/pages/comment/comment",
         "zh_tcwq/pages/sjfb/sjfb",
         "zh_tcwq/pages/sjedit/sjedit",
         "zh_tcwq/pages/sjdt/sjdt",
         
         "zh_tcwq/pages/coments/coments",
+        
         "zh_tcwq/pages/task/task",
 
         "zh_tcwq/pages/distribution/yaoqing",

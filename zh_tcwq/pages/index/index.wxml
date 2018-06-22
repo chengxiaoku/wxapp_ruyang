@@ -56,8 +56,8 @@
   <view class="recommend">
     <scroll-view class="nav-two" scrollX="true">
       <!-- <view bindtap="commend" class="fon {{activeIndex==index?'bold':'normal'}}" data-name="{{item}}" id="{{index}}" wx:for="{{bkarr}}" wx:key="{{item}}">{{item}}</view>  -->
-      <view bindtap="commend" class="fon bold" style='color:#FA8072' id="{{index}}">最新动态</view>
-      <view bindtap="commend" class="fon bold" id="{{index}}">关注动态</view>
+      <view bindtap="commend" class="fon {{activeIndex==0?'bold':'normal'}}" data-name="最新动态"  id="0">最新动态</view>
+      <view bindtap="commend" class="fon {{activeIndex==1?'bold':'normal'}}" data-name="我的关注"  id="1">我的关注</view>
       <!-- <view bindtap="commend" class="fon {{activeIndex==index?'bold':'normal'}}" data-name="{{item}}" id="{{index}}">好友动态</view> -->
     </scroll-view>
   </view>
@@ -171,13 +171,17 @@
 
 
 
+
+
+
+
     <!-- <navigator class="loading rel" openType="switchTab" url="../type/type" wx:if="{{refresh_top==true&&seller.length!=0}}">
       点击查看更多 >
     </navigator> -->
     <view class="loading rel" wx:if="{{refresh_top==false}}">
       <image class="ab udlr" mode="widthFix" src="../image/loading.gif"></image>
     </view>
-    <view class="none_store" wx:if="{{seller.length==0}}">
+    <view class="none_store" wx:if="{{dongtailist.length==0}}">
       <view class="rel">
         <image class="ab udlr img2" mode="aspectFill" src="../image/tie2.png"></image>
       </view>

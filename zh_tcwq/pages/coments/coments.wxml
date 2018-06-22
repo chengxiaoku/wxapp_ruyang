@@ -8,7 +8,7 @@
       </view>
       <!-- <view bindtap="reply1" class="userwords_color" data-name="{{item.name}}" data-reflex_id="{{item.id}}">回复</view> -->
       <view>
-        <view style='float:right;line-height:16px;color:#aaa'>{{pinglunlist['parent'].heart}}</view>
+        <view style='float:right;line-height:16px;color:#aaa;margin-left:8rpx;'>{{pinglunlist['parent'].heart}}</view>
         <image catchtap='mycomlike1' style='width:16px;height:16px;float:right;margin-right:5rpx;' src="../image/staoxin.png" wx:if="{{pinglunlist['parent'].user_is_dianzan}}"></image>
         <image catchtap='mycomlike1' wx:else style='width:16px;height:16px;float:right;margin-right:5rpx;' src="../image/baixin.png"></image>
       </view>
@@ -34,7 +34,7 @@
       </view>
       <!-- <view bindtap="reply1" class="userwords_color" data-name="{{item.name}}" data-reflex_id="{{item.id}}">回复</view> -->
       <view>
-        <view style='float:right;line-height:16px;color:#aaa'>{{item.heart}}</view>
+        <view style='float:right;line-height:16px;color:#aaa;margin-left:8rpx;'>{{item.heart}}</view>
         <image catchtap='mycomlike' data-plid="{{item.id}}" data-plindex='{{plind}}' style='width:16px;height:16px;float:right;margin-right:5rpx;' src="../image/staoxin.png" wx:if="{{item.user_is_dianzan}}"></image>
         <image catchtap='mycomlike' data-plid="{{item.id}}" data-plindex='{{plind}}' style='width:16px;height:16px;float:right;margin-right:5rpx;' src="../image/baixin.png" wx:else></image>
       </view>

@@ -129,6 +129,8 @@ Page({
       // post_info_id: t.id,
       user_name: wx.getStorageSync("users").name
     }), 
+
+    o.data.dtid = t.id;
     //获取动态
     o.getdtlist(t.id);
       //o.getdtlist(1);
@@ -636,6 +638,7 @@ Page({
   onReady: function () { },
   onShow: function () {
     //this.reload();
+    this.getdtlist(this.data.dtid)
   },
   onHide: function () { },
   onUnload: function () { },
@@ -1058,9 +1061,8 @@ Page({
         user_id: wx.getStorageSync('users').id
       },
       success: function (t) {
-         1 == t.data.state ? that.setData({
-          comment: !0,
-          plid: e.currentTarget.dataset.plid
+         1 == t.data.state ? wx.navigateTo({ 
+          url: '../comment/comment?dtid='+ that.data.dongtailist.id +"&pid="+e.currentTarget.dataset.plid
         }) : wx.showModal({
           title: "提示",
           content: "您的账号异常，请尽快联系管理员",

@@ -113,7 +113,7 @@
             </view>
             <!-- <view bindtap="reply1" class="userwords_color" data-name="{{item.name}}" data-reflex_id="{{item.id}}">回复</view> -->
             <view>
-              <view style='float:right;line-height:16px;color:#aaa'>{{item.heart}}</view>
+              <view style='float:right;line-height:16px;color:#aaa;margin-left:8rpx;'>{{item.heart}}</view>
               <image catchtap='mycomlike' data-plid="{{item.id}}" data-plindex='{{plind}}' wx:if="{{item.user_is_dianzan ==false}}" style='width:16px;height:16px;float:right;margin-right:5rpx;' src="../image/baixin.png"></image>
               <image catchtap='mycomlike' data-plid="{{item.id}}" data-plindex='{{plind}}' wx:else style='width:16px;height:16px;float:right;margin-right:5rpx;' src="../image/staoxin.png"></image>
             </view>
