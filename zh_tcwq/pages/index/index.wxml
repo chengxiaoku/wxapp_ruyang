@@ -17,8 +17,12 @@
     <image class="weath_img" mode="widthFix" src="../image/dayu.png" style="margin-top:-10rpx;" wx:if="{{weather!='多云'&&weather!='晴'&&weather!='阴'}}"></image>
     <image class="weath_img" mode="widthFix" src="../image/yin.png" style="margin-top:-10rpx;" wx:if="{{weather=='阴'}}"></image>
     <view class="weather">
+      <!-- <view class="weatherinfo gobyndsingle">{{area}} {{temperature}}℃ {{weather}}</view> -->
+      <view class="weatherinfo gobyndsingle">{{reporttime}} {{w1}}</view>
+    </view>
+    <view class="weather">
       <view class="weatherinfo gobyndsingle">{{area}} {{temperature}}℃ {{weather}}</view>
-      <view class="weathertime">{{reporttime}} {{w1}}</view>
+      <!-- <view class="weathertime">{{reporttime}} {{w1}}</view> -->
     </view>
     <!-- <view class="liulan">
              <view>
@@ -30,16 +34,30 @@
                 <text class="liulan_color2">{{Num}}</text>
             </view>
         </view> -->
-    <navigator class="flex-center search_rit" url="search">
+    <!-- <navigator class="flex-center search_rit" url="search">
       <image class="searchk" src="../image/sousuo@3x.png"></image>
       <input bindblur="bindinput" class="search_inp" placeholder="请输入{{System.tzmc}}内容搜索" placeholderStyle="color:#999;" type="text"></input>
-    </navigator>
+    </navigator> -->
   </view>
+
+  <view class="ad">
+    <image class="ad-icon" mode="scaleToFill" src="../image/guangbo.png"></image>
+    <swiper autoplay="true" circular="true" class="newest_content gobyndsingle" interval="2000" vertical="true">
+      <swiper-item wx:for="{{msgList}}" wx:key="{{item.value}}">
+        <view bindtap="notice" class="adinfo gobyndsingle" data-id="{{item.id}}" style="color:#ED414A">
+          <rich-text nodes="{{item.title}}"></rich-text>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+
 
   <view class="recommend">
     <scroll-view class="nav-two" scrollX="true">
       <!-- <view bindtap="commend" class="fon {{activeIndex==index?'bold':'normal'}}" data-name="{{item}}" id="{{index}}" wx:for="{{bkarr}}" wx:key="{{item}}">{{item}}</view>  -->
-      <view bindtap="commend" class="fon bold">最新动态</view>
+      <view bindtap="commend" class="fon bold" style='color:#FA8072' id="{{index}}">最新动态</view>
+      <view bindtap="commend" class="fon bold" id="{{index}}">关注动态</view>
       <!-- <view bindtap="commend" class="fon {{activeIndex==index?'bold':'normal'}}" data-name="{{item}}" id="{{index}}">好友动态</view> -->
     </scroll-view>
   </view>
@@ -65,10 +83,10 @@
           </view>
         </view>
         <view bindtap="unfollow" class="content_right" data-id="{{item.userid}}" wx:if="{{item.is_guanzhu==true}}" data-index="{{index}}">
-          取消关注
+          取关
         </view>
         <view bindtap="follow" class="content_right" data-index="{{index}}" data-id="{{item.userid}}" wx:else>
-          点击关注
+          关注
         </view>
       </view>
       <view bindtap="see" class="content_wen gobyndmulit rel" data-id="{{item.id}}">
@@ -81,24 +99,24 @@
       </view> -->
       <view class="content_picture" wx:if="{{item.image_list!=''}}">
         <view wx:for="{{item.image_list}}" wx:for-item="ilitem" wx:key="{{item.value}}">
-          <image bindtap="previewImage" mode="aspectFill" src="{{url}}{{ilitem}}" style="border-radius:10rpx;"></image>
+          <image bindtap="previewImage" wx:for-index="inde" mode="aspectFill" src="{{url}}{{ilitem}}" style="border-radius:10rpx;" data-id='{{item.id}}'></image>
         </view>
       </view>
-      <view class="video-box" style="width:86px;height:77px;" wx:if="{{item.veido!='' && item.veido}}"  objectFit="contain">
-      <video wx:if="{{item.veido != 'undefined'}}" class="video" controls="{{control}}" autoplay="true" loop="true" muted="true" style="width:86px;height:77px;" src="http://cweekend.cn/ruyang/web/video/{{item.veido}}"></video>
-    </view>
+      <view class="video-box" wx:if="{{item.veido!='' && item.veido}}" objectFit="contain">
+        <video class="video" controls="{{true}}" style='width:92%;'loop="true"  src="http://cweekend.cn/ruyang/web/video/{{item.veido}}" bindplay='bindplay' id='myVideo{{item.id}}'></video>
+      </view>
       <view class="content_chakan" data-id="{{item.id}}">
         <view class="content_info time1">{{item.new_time}}</view>
         <view>
           <view style='font-size: 24rpx;margin-right:30rpx;display:inline-block' bindtap='myreward' data-id='{{item.id}}' data-userid='{{item.userid}}' data-index="{{index}}">
-            <image style='width:15px;height:18px;' src="../image/bag.png"></image>
+            <image style='width:19px;height:19px;' src="../image/bao2.png"></image>
           </view>
-          <view style='font-size: 24rpx;margin-right:30rpx;display:inline-block' bindtap='mylike' data-index="{{index}}"  wx:if="{{item.user_is_dianzan==false}}" data-id='{{item.id}}'>
+          <!-- <view style='font-size: 24rpx;margin-right:30rpx;display:inline-block' bindtap='mylike' data-index="{{index}}"  wx:if="{{item.user_is_dianzan==false}}" data-id='{{item.id}}'>
             <image style='width:18px;height:18px;' src="../image/zan.png"></image>
           </view>
           <view style='font-size: 24rpx;margin-right:30rpx;display:inline-block' bindtap='mylike' data-index="{{index}}" data-id='{{item.id}}' wx:else >
             <image style='width:18px;height:18px;' src="../image/thumbs_up.png"></image>
-          </view>
+          </view> -->
           <view style='font-size: 24rpx;display:inline-block' bindtap='mycomment' data-id='{{item.id}}' data-index="{{index}}">
             <image style='width:19px;height:19px;' src="../image/duihua.png"></image>
           </view>
@@ -118,13 +136,14 @@
 
         <view class="zannum">
           <view style='display:inline-block;padding:0 15px;'>
-            <image class="zan" src="../image/thumbs_up.png"></image>
+            <image class="zan" src="../image/zan.png" bindtap='mylike' data-index="{{index}}" wx:if="{{item.user_is_dianzan==false}}" data-id='{{item.id}}'></image>
+            <image class="zan" src="../image/thumbs_up.png" bindtap='mylike' data-index="{{index}}" data-id='{{item.id}}' wx:else></image>
             {{item.dianzan_sum}} 人点赞
-            <block wx:for="{{item.dashanglist}}" wx:for-item="dsitem" wx:key="" wx:for-index="ind">
+            <!-- <block wx:for="{{item.dashanglist}}" wx:for-item="dsitem" wx:key="" wx:for-index="ind">
               <view style="color:red;display:inline-block;margin-left:6rpx;" wx:if="{{ind !=(item.dashanglist.length-1) }}">{{dsitem.name}}打赏{{dsitem.dashang_money}},</view>
               <view style="color:red;display:inline-block;margin-left:6rpx;" wx:else>{{dsitem.name}}打赏{{dsitem.dashang_money}}</view>
               <view style="color:red;display:inline-block;margin-left:6rpx;" wx:if="{{ind ==6 }}">...</view>
-            </block>
+            </block> -->
           </view>
 
         </view>
@@ -134,13 +153,13 @@
           <view style='padding:5px 30rpx;'>
             <view style='height:25px;'>
               <view style='width:83%;display:inline-block;line-height:25px;'>
-                <view style='display:inline-block;'>
+                <view style='display:inline-block;color:#7A7A7A'>
                   <font style="color:#2cb2f0">{{plitem.senduser}}</font> : {{plitem.content}} </view>
               </view>
               <view style='display:inline-block;float:right;line-height:25px;height:25px;'>
                 <image style='display:inline-block;width:16px;height:16px;margin-top:10rpx;' src="../image/baixin.png" wx:if="{{plitem.user_is_dianzan ==false}}" bindtap='mycomlike' data-id='{{plitem.id}}' data-index='{{index}}' data-plindex='{{plind}}'></image>
                 <image style='display:inline-block;width:16px;height:16px;margin-top:10rpx;' src="../image/staoxin.png" wx:else bindtap='mycomlike' data-id='{{plitem.id}}' data-index='{{index}}' data-plindex='{{plind}}'></image>
-                <view style='float:right;margin-left:5rpx;color:#666;'>{{plitem.heart}}</view>
+                <view style='float:right;margin-left:10rpx;color:#7A7A7A;'>{{plitem.heart}}</view>
               </view>
             </view>
           </view>

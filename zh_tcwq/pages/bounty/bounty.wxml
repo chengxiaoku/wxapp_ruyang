@@ -100,6 +100,7 @@
         <text>{{item.tz.address}}</text>
       </view>
     </view>
+    
     <!-- <view class="content_liulan">
             <image class="eye" src="../image/liulan.png"></image>
             <view class="content_num">{{item.tz.views}}</view>

@@ -35,7 +35,6 @@ App({
                                         name: t
                                     },
                                     success: function(e) {
-                                    
                                         console.log(e), wx.setStorageSync("users", e.data), wx.setStorageSync("uniacid", e.data.uniacid), 
                                         s(e.data);
                                     }

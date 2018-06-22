@@ -316,7 +316,8 @@ Page({
     });
   },
   previewImage: function (t) {
-    var e = this.data.url, a = [], o = t.currentTarget.dataset.inde, n = this.data.post.img;
+    //console.log(this.data.dongtailist)
+    var e = this.data.url, a = [], o = t.currentTarget.dataset.inde, n = this.data.dongtailist.image_list;
     for (var s in n) a.push(e + n[s]);
     wx.previewImage({
       current: e + n[o],

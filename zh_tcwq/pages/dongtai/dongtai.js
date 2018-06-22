@@ -503,7 +503,7 @@ Page({
           content: t.detail.value.content,
           dili: t.detail.value.dzaddress ? t.detail.value.dzaddress : '',
           imglist: _imgArray.length == 0 ? '' : _imgArray.join(","),
-          vedio: that.data.videourl,
+          vedio: that.data.videourl ? that.data.videourl : "",
           is_display: 1
         },
         success: function (e) {
