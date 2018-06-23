@@ -109,7 +109,7 @@
         <view class="content_info time1">{{item.new_time}}</view>
         <view>
           <view style='font-size: 24rpx;margin-right:30rpx;display:inline-block' bindtap='myreward' data-id='{{item.id}}' data-userid='{{item.userid}}' data-index="{{index}}">
-            <image style='width:19px;height:19px;' src="../image/bao2.png"></image>
+            <image style='width:19px;height:19px;' src="../image/bao.png"></image>
           </view>
           <!-- <view style='font-size: 24rpx;margin-right:30rpx;display:inline-block' bindtap='mylike' data-index="{{index}}"  wx:if="{{item.user_is_dianzan==false}}" data-id='{{item.id}}'>
             <image style='width:18px;height:18px;' src="../image/zan.png"></image>
