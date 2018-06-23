@@ -74,8 +74,23 @@
         <view style='color:#FF8247; padding:1rpx 13rpx;border-radius: 10rpx;margin-right:20rpx;border:1px solid #FF8247'>
           {{item.tz.money_clf}}元
         </view>
-        <view bindtap="see" style='color:#FF8247; padding:1rpx 13rpx;border-radius: 10rpx;border:1px solid #FF8247' data-id="{{item.tz.id}}">
+        <view bindtap="see" wx:if="{{item.tz.tatus==1}}" style='color:#FF8247; padding:1rpx 13rpx;border-radius: 10rpx;border:1px solid #FF8247' data-id="{{item.tz.id}}">
           接任务
+        </view>
+        <view bindtap="see" wx:elif="{{item.tz.tatus==2}}" style='color:#FF8247; padding:1rpx 13rpx;border-radius: 10rpx;border:1px solid #FF8247' data-id="{{item.tz.id}}">
+          进行中
+        </view>
+        <view bindtap="see" wx:elif="{{item.tz.tatus==3 && item.tz.userid==userid}}" style='color:#FF8247; padding:1rpx 13rpx;border-radius: 10rpx;border:1px solid #FF8247' data-id="{{item.tz.id}}">
+          待确认
+        </view>
+        <view bindtap="see" wx:elif="{{item.tz.tatus==3 && item.tz.userid!=userid}}" style='color:#FF8247; padding:1rpx 13rpx;border-radius: 10rpx;border:1px solid #FF8247' data-id="{{item.tz.id}}">
+          待收款
+        </view>
+        <view bindtap="see" wx:elif="{{item.tz.tatus==4}}" style='color:#FF8247; padding:1rpx 13rpx;border-radius: 10rpx;border:1px solid #FF8247' data-id="{{item.tz.id}}">
+          已完成
+        </view>
+        <view bindtap="see" wx:elif="{{item.tz.tatus==5}}" style='color:#FF8247; padding:1rpx 13rpx;border-radius: 10rpx;border:1px solid #FF8247' data-id="{{item.tz.id}}">
+          已撤销
         </view>
       </view>
 

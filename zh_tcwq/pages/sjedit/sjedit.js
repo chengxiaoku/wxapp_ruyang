@@ -1,4 +1,6 @@
+var dateTimePicker = require('../../../utils/dateTimePicker.js');
 var app = getApp(), _imgArray = [];
+
 function isPoneAvailable(str) {
   var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
   if (!myreg.test(str)) {
@@ -6,7 +8,7 @@ function isPoneAvailable(str) {
   } else {
     return true;
   }
-}  
+}
 function isNumber(val) {
 
   var regPos = /^\d+(\.\d+)?$/; //非负浮点数
@@ -29,6 +31,16 @@ Page({
     num: 1,
     disabled: !1,
     money1: 0,
+
+
+    date: '2018-10-01',
+    time: '12:00',
+    dateTimeArray: null,
+    dateTime: null,
+    dateTimeArray1: null,
+    dateTime1: null,
+    startYear: 2000,
+    endYear: 2050
   },
   bindMultiPickerChange: function (e) {
     this.setData({
@@ -42,7 +54,54 @@ Page({
       text: t
     });
   },
+
+
+  changeDateTime1(e) {
+    this.setData({ dateTime1: e.detail.value });
+  },
+  changeDateTimeColumn1(e) {
+    var arr = this.data.dateTime1, dateArr = this.data.dateTimeArray1;
+
+    arr[e.detail.column] = e.detail.value;
+    dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]]);
+
+    this.setData({ 
+      dateTimeArray1: dateArr,
+      dateTime1: arr
+    });
+  },
+  changeDateTime(e) {
+    this.setData({ dateTime: e.detail.value });
+  },
+  changeDateTimeColumn(e) {
+    var arr = this.data.dateTime, dateArr = this.data.dateTimeArray;
+
+    arr[e.detail.column] = e.detail.value;
+    dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]]);
+
+    this.setData({ 
+      dateTimeArray: dateArr,
+      dateTime: arr
+    });
+  },
   onLoad: function (e) {
+    // 获取完整的年月日 时分秒，以及默认显示的数组
+    var obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
+    var obj1 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
+    // 精确到分的处理，将数组的秒去掉
+    var lastArray = obj1.dateTimeArray.pop();
+    var lastTime = obj1.dateTime.pop();
+    var lastArray1 = obj.dateTimeArray.pop();
+    var lastTime1 = obj.dateTime.pop();
+    this.setData({
+      dateTime: obj.dateTime,
+      dateTimeArray: obj.dateTimeArray,
+      dateTimeArray1: obj1.dateTimeArray,
+      dateTime1: obj1.dateTime
+    });
+
+
+
     console.log(e);
     var i = this, t = wx.getStorageSync("users").id;
     app.util.request({
@@ -110,12 +169,12 @@ Page({
           success: function (e) {
             i.setData({
               address: e.data.result.address,
-              coordinates : t
+              coordinates: t
             });
           }
         });
       }
-    }) 
+    })
   },
   selected: function (e) {
     var t = e.currentTarget.id, a = this.data.stick;
@@ -178,7 +237,7 @@ Page({
 
 
 
-//发布
+  //发布
   submitact: function (t) {
     var that = this;
     if (!t.detail.value.content || t.detail.value.content == '' || t.detail.value.content == null) {
@@ -189,7 +248,7 @@ Page({
         fail: function (e) { },
         complete: function (e) { }
       })
-    }  else if (!t.detail.value.tel || t.detail.value.tel == '' || t.detail.value.tel == null) {
+    } else if (!t.detail.value.tel || t.detail.value.tel == '' || t.detail.value.tel == null) {
       wx.showModal({
         title: "提示",
         content: "手机号为空",
@@ -197,7 +256,7 @@ Page({
         fail: function (e) { },
         complete: function (e) { }
       })
-    } else if (!isPoneAvailable(t.detail.value.tel)){
+    } else if (!isPoneAvailable(t.detail.value.tel)) {
       wx.showModal({
         title: "提示",
         content: "请输入正确的手机号",
@@ -241,7 +300,7 @@ Page({
         fail: function (e) { },
         complete: function (e) { }
       })
-    }else {
+    } else {
 
       app.util.request({
         url: "entry/wxapp/FabuRenwu",

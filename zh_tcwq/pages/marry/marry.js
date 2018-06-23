@@ -75,7 +75,7 @@ Page({
     reload: function(t) {
         var a = this, e = a.data.id;
         console.log(e), app.util.request({
-            url: "entry/wxapp/type2",
+            url: "entry/wxapp/mytype2",
             cachetime: "0",
             data: {
                 id: e

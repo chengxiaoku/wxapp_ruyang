@@ -23,7 +23,7 @@ Page({
       url: n,
       pt_name: t.pt_name
     }), app.util.request({
-      url: "entry/wxapp/type",
+      url: "entry/wxapp/mytype",
       cachetime: "0",
       success: function (a) {
         var t = a.data;
@@ -76,7 +76,7 @@ Page({
           title: "提示",
           content: "今天发帖次数已经超限!"
         }) : app.util.request({
-          url: "entry/wxapp/type2",
+          url: "entry/wxapp/mytype2",
           cachetime: "0",
           data: {
             id: n

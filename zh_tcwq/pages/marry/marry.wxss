@@ -299,8 +299,9 @@ page {
 } */
 
 .content_img {
-    width: 105rpx;
-    height: 105rpx;
+    width:85rpx;
+    height:85rpx;
+
 }
 
 .content_zhong {

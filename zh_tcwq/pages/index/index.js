@@ -980,7 +980,6 @@ Page({
 
               var obj = []
               if (that.data.activeIndex == 0) {
-                console.log("最新动态");
                 obj = that.data.dongtailist;
                 obj[t.currentTarget.dataset.index].is_guanzhu = true
                 for (var i = 0; i < obj.length; i++) {
@@ -992,7 +991,6 @@ Page({
                   dongtailist: obj
                 })
               } else {
-                console.log("我的关注");
                 obj = that.data.mydongtailist;
                 obj[t.currentTarget.dataset.index].is_guanzhu = true
                 for (var i = 0; i < obj.length; i++) {

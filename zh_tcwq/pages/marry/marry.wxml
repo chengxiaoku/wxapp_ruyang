@@ -29,10 +29,10 @@
 
 
           <view class="content_right" data-id="{{item.tz.id}}">
-            <view style=' padding:5rpx 10rpx;background: #ed414a;border-radius: 10rpx;margin-right:20rpx;'>
+            <view style='color:#FF8247; padding:0.5px 7px;border-radius: 5px;margin-right:11px;border:1px solid #FF8247'>
               {{item.tz.money_clf}}元
             </view>
-            <view bindtap="see" style='padding:5rpx 10rpx;background: #ed414a;border-radius: 10rpx;'>
+            <view bindtap="see" style='color:#FF8247; padding:0.5px 7px;border-radius: 5px;border:1px solid #FF8247'>
               接任务
             </view>
           </view>
