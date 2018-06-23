@@ -31,10 +31,14 @@
 </view>
 <view class="container" wx:for="{{detailed}}">
     <view class="detailed">
+    <view wx:if="{{!item.note}}">
         <view wx:if="{{item.type == 1}}">打赏支出</view>
         <view wx:if="{{item.type == 2}}">打赏收入</view>
         <view wx:if="{{item.type == 3}}">支出任务赏金</view>
         <view wx:if="{{item.type == 4}}">收入任务赏金</view>
+        </view>
+        <view wx:if="{{item.note}}">{{item.note}}</view>
+        
         <view>{{item.create_time}}</view>
         <view wx:if="{{item.type == 1}}">-{{item.money}} 元              </view>
         <view wx:if="{{item.type == 2}}" style='color:green'>+{{item.money}} 元
