@@ -33,7 +33,7 @@ Page({
             },
             success: function(o) {
                 console.log(o), t.setData({
-                    integral: o.data.total_score
+                  integral: o.data.total_score
                 });
             }
         });
