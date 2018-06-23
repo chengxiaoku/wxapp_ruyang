@@ -33,7 +33,7 @@ Page({
             },
             success: function(o) {
                 console.log(o), t.setData({
-                    integral: o.data.total_score
+                  integral: (parseFloat(o.data.ruyang_money) + parseFloat(o.data.money_dj))
                 });
             }
         });
