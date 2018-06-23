@@ -937,15 +937,16 @@ body {
 }
 
 .color2 {
-    background-color: #ff8915;
+    border: 1px solid #ff8915;
+     /*background-color: #ff8915; */
 }
 
 .content_zhi {
-    padding: 2rpx 6rpx;
-    font-size: 22rpx;
+    padding:0 6rpx;
+    font-size: 18rpx;
     text-align: center;
     border-radius: 6rpx;
-    color: white;
+    color: #ff8915;
     margin-right: 10rpx;
 }
 

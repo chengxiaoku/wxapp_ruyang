@@ -33,9 +33,9 @@ Page({
     bkname: "最新动态",
 
 
-    comment:!1,
-    reward:!1,
-    complete:null,
+    comment: !1,
+    reward: !1,
+    complete: null,
     complete1: null,
 
 
@@ -95,10 +95,12 @@ Page({
       img: "../image/star_none.png"
     }],
 
-    dongtailist:[]
+    dongtailist: [],
+    mylist: [],
+    userid: wx.getStorageSync('users').id
   },
   updateUserInfo: function (t) {
-     "getUserInfo:ok" == t.detail.errMsg && (this.setData({
+    "getUserInfo:ok" == t.detail.errMsg && (this.setData({
       hydl: !1
     }), this.reload());
   },
@@ -116,7 +118,7 @@ Page({
     var e = this, a = (t.currentTarget.dataset.name, t.currentTarget.dataset.appid), n = t.currentTarget.dataset.src, i = t.currentTarget.dataset.id, o = t.currentTarget.dataset.sjtype;
     var s = t.currentTarget.dataset.type;
     if (1 == s) {
-      if ( "../distribution/jrhhr" == n) return e.redinfo(), !1;
+      if ("../distribution/jrhhr" == n) return e.redinfo(), !1;
       if ("../store/store" == n) return wx.switchTab({
         url: "../store/store"
       }), !1;
@@ -196,11 +198,11 @@ Page({
     });
   },
   onLoad: function (t) {
-   //console.log(wx.getStorageSync('users'));
+    //console.log(wx.getStorageSync('users'));
     var e = decodeURIComponent(t.scene);
     if ("undefined" != e) var a = e;
     if (null != t.userid) {
-     
+
       a = t.userid;
     }
     var n = this;
@@ -217,32 +219,32 @@ Page({
       }
     }), app.util.request({
       url: "entry/wxapp/Url2",
-      
+
       cachetime: "0",
       success: function (t) {
         console.log(t.data);
         wx.setStorageSync("url2", t.data);
       }
     }), app.util.request({
-      
+
       url: "entry/wxapp/Url",
       cachetime: "0",
       success: function (t) {
         console.log(t.data);
-         wx.setStorageSync("url", t.data), n.setData({
+        wx.setStorageSync("url", t.data), n.setData({
           url: t.data
         });
       }
-    }), 
+    }),
 
 
-     this.getdtlist();
+      this.getdtlist();
 
-     this.reload();
+    this.reload();
   },
   reload: function (t) {
     var c = this, i = this.data.fxzuid;
-     wx.login({
+    wx.login({
       success: function (t) {
         var e = t.code;
         wx.setStorageSync("code", e), wx.getSetting({
@@ -258,7 +260,7 @@ Page({
                     code: e
                   },
                   success: function (t) {
-                     wx.setStorageSync("key", t.data.session_key), wx.setStorageSync("openid", t.data.openid);
+                    wx.setStorageSync("key", t.data.session_key), wx.setStorageSync("openid", t.data.openid);
                     var e = t.data.openid;
                     app.util.request({
                       url: "entry/wxapp/Login",
@@ -269,7 +271,7 @@ Page({
                         name: a
                       },
                       success: function (t) {
-                         c.setData({
+                        c.setData({
                           userinfo: t.data
                         }), wx.setStorageSync("users", t.data), wx.setStorageSync("uniacid", t.data.uniacid),
                           null != i && app.util.request({
@@ -280,7 +282,7 @@ Page({
                               user_id: i
                             },
                             success: function (t) {
-                              
+
                             }
                           });
                       }
@@ -306,11 +308,11 @@ Page({
             op: e
           },
           success: function (i) {
-             app.util.request({
+            app.util.request({
               url: "entry/wxapp/System",
               cachetime: "0",
               success: function (t) {
-                 "1" == t.data.dw_more && c.setData({
+                "1" == t.data.dw_more && c.setData({
                   dwcity: i.data.result.address_component.district
                 }), "2" == t.data.dw_more && c.setData({
                   dwcity: i.data.result.address_component.city
@@ -348,7 +350,7 @@ Page({
                   "1" == t.data.is_pcfw && a.push("顺风车"), wx.setStorageSync("System", t.data),
                   1 == t.data.many_city ? (wx.setStorageSync("city", t.data.cityname), c.setData({
                     city: t.data.cityname
-                  })) : ( 1 != wx.getStorageSync("city_type") ? (wx.setStorageSync("city", c.data.dwcity),
+                  })) : (1 != wx.getStorageSync("city_type") ? (wx.setStorageSync("city", c.data.dwcity),
                     c.setData({
                       city: c.data.dwcity
                     })) : (c.setData({
@@ -363,7 +365,7 @@ Page({
                     user_id: wx.getStorageSync("users").id
                   },
                   success: function (t) {
-                    
+
                   }
                 }), wx.setNavigationBarTitle({
                   title: t.data.pt_name
@@ -398,7 +400,7 @@ Page({
       url: "entry/wxapp/Views",
       cachetime: "0",
       success: function (t) {
-        
+
         var e = t.data;
         "" == e ? e = 0 : 1e4 < Number(e) && (e = (Number(e) / 1e4).toFixed(2) + "万"), c.setData({
           views: e
@@ -436,7 +438,7 @@ Page({
         cityname: e
       },
       success: function (t) {
-        
+
         var e = [], a = [], n = [], i = [];
         for (var o in t.data) 1 == t.data[o].type && e.push(t.data[o]), 5 == t.data[o].type && a.push(t.data[o]),
           7 == t.data[o].type && n.push(t.data[o]), 10 == t.data[o].type && i.push(t.data[o]);
@@ -464,7 +466,7 @@ Page({
       url: "entry/wxapp/GetNav",
       cachetime: "0",
       success: function (t) {
-        
+
         var e = t.data;
         e.length <= 5 ? s.setData({
           height: 150
@@ -481,7 +483,7 @@ Page({
   },
   sjbk: function () {
     var h = this, t = wx.getStorageSync("city");
-   
+
     h.data.page;
     var w = [];
     app.util.request({
@@ -531,7 +533,7 @@ Page({
         cityname: e
       },
       success: function (t) {
-        if ( s.setData({
+        if (s.setData({
           refresh_top: !0
         }), r = t.data, 0 < t.data.length) {
           for (var e in t.data) {
@@ -558,7 +560,7 @@ Page({
   hybk: function () {
     var d = this, t = (d.data.index_class, wx.getStorageSync("city")), p = (wx.getStorageSync("index"),
       d.data.page, []);
-     app.util.request({
+    app.util.request({
       url: "entry/wxapp/YellowPageList",
       cachetime: "0",
       data: {
@@ -599,7 +601,7 @@ Page({
         cityname: t
       },
       success: function (t) {
-        if ( a.setData({
+        if (a.setData({
           refresh_top: !0
         }), n = t.data, 0 < t.data.length) {
           for (var e in t.data) t.data[e].tz.time = app.ormatDate(t.data[e].tz.time).slice(5, 16),
@@ -627,7 +629,7 @@ Page({
       activeIndex: t.detail.current
     });
     var a = e.data.bkarr[t.detail.current];
-     "最新信息" == a && e.seller(), "热门商家" == a && e.sjbk(), "黄页114" == a && e.hybk(),
+    "最新信息" == a && e.seller(), "热门商家" == a && e.sjbk(), "黄页114" == a && e.hybk(),
       "顺风车" == a && e.sfcbk();
   },
   commend: function (t) {
@@ -641,6 +643,7 @@ Page({
       swipecurrent: t.currentTarget.id
     }), "最新信息" == i && e.seller(), "热门商家" == i && e.sjbk(), "黄页114" == i && e.hybk(),
       "顺风车" == i && e.sfcbk();
+      e.getdtlist();
   },
   whole: function (t) {
     wx.removeStorage({
@@ -744,7 +747,7 @@ Page({
         user_id: e
       },
       success: function (t) {
-         "2" == t.data.state ? ( wx.navigateTo({
+        "2" == t.data.state ? (wx.navigateTo({
           url: "../distribution/yaoqing"
         })) : "1" == t.data.state ? wx.showModal({
           title: "提示",
@@ -815,7 +818,7 @@ Page({
     });
   },
   carinfo: function (t) {
-    
+
     var e = t.currentTarget.dataset.id;
     wx.navigateTo({
       url: "../shun/shuninfo2/shuninfo2?id=" + e,
@@ -826,7 +829,7 @@ Page({
   },
   yellow_info: function (t) {
     var e = t.currentTarget.dataset.id, a = t.currentTarget.dataset.user_id;
-     wx.navigateTo({
+    wx.navigateTo({
       url: "../yellow_page/yellowinfo?id=" + e,
       success: function (t) { },
       fail: function (t) { },
@@ -875,7 +878,7 @@ Page({
       first: 1
     }), wx.removeStorageSync("city_type");
   },
-  onShow: function () { this.getdtlist();},
+  onShow: function () { this.getdtlist(); },
   onHide: function () { },
   onUnload: function () {
     wx.removeStorageSync("city_type");
@@ -887,7 +890,7 @@ Page({
       activeIndex: 0,
       swipecurrent: 0,
       refresh_top: !1
-    }), this.reload(),this.getdtlist(), wx.stopPullDownRefresh();
+    }), this.reload(), this.getdtlist(), wx.stopPullDownRefresh();
   },
   onReachBottom: function () {
     //console.log("上拉触底");
@@ -913,7 +916,7 @@ Page({
     });
   },
   //获取动态接口
-  getdtlist:function(){
+  getdtlist: function () {
     var that = this
     app.util.request({
 
@@ -922,8 +925,9 @@ Page({
         userid: wx.getStorageSync('users').id,
         pageindex: 1,
         pagesize: 20,
-        num:5,
-        pinglun_num:5
+        num: 5,
+        pinglun_num: 5,
+        type: false
       },
       success: function (res) {
         console.log(res.data.data)
@@ -934,9 +938,30 @@ Page({
         }
       }
     })
+
+    app.util.request({
+
+      url: "entry/wxapp/dongtai_list",
+      data: {
+        userid: wx.getStorageSync('users').id,
+        pageindex: 1,
+        pagesize: 20,
+        num: 5,
+        pinglun_num: 5,
+        type: true
+      },
+      success: function (res) {
+        console.log(res.data.data)
+        if (res.data.data) {
+          that.setData({
+            mydongtailist: res.data.data
+          })
+        }
+      }
+    })
   },
   //动态关注接口
-  follow :function(t){
+  follow: function (t) {
     var that = this;
     app.util.request({
 
@@ -951,32 +976,47 @@ Page({
           wx.showToast({
             title: "关注成功",
             mask: !0,
-            success: function (e) { 
-                
-              var obj = [],
-              obj = that.data.dongtailist;
+            success: function (e) {
 
-              obj[t.currentTarget.dataset.index].is_guanzhu = true
-              for (var i = 0; i < obj.length; i++) {
-                if (obj[t.currentTarget.dataset.index].userid == obj[i].userid) {
-                  obj[i].is_guanzhu = true
+              var obj = []
+              if (that.data.activeIndex == 0) {
+                console.log("最新动态");
+                obj = that.data.dongtailist;
+                obj[t.currentTarget.dataset.index].is_guanzhu = true
+                for (var i = 0; i < obj.length; i++) {
+                  if (obj[t.currentTarget.dataset.index].userid == obj[i].userid) {
+                    obj[i].is_guanzhu = true
+                  }
                 }
+                that.setData({
+                  dongtailist: obj
+                })
+              } else {
+                console.log("我的关注");
+                obj = that.data.mydongtailist;
+                obj[t.currentTarget.dataset.index].is_guanzhu = true
+                for (var i = 0; i < obj.length; i++) {
+                  if (obj[t.currentTarget.dataset.index].userid == obj[i].userid) {
+                    obj[i].is_guanzhu = true
+                  }
+                }
+                that.setData({
+                  mydongtailist: obj
+                })
               }
-              that.setData({
-                dongtailist: obj
-              })
+
 
             },
             fail: function (t) { },
             complete: function (t) { }
           })
-          
+
         }
       }
     })
   },
   //动态点赞接口
-  mylike:function(t){
+  mylike: function (t) {
     var that = this;
     app.util.request({
       url: "entry/wxapp/dongtai_dianzan",
@@ -987,23 +1027,35 @@ Page({
       success: function (res) {
         console.log(res.data.data)
         if (res.data.success) {
-          var obj = [],
-          obj = that.data.dongtailist;
-          if (res.data.data.type == 'add'){
+          var obj = [];
+          if (that.data.activeIndex == 0) {
+            obj = that.data.dongtailist;
+          } else {
+            obj = that.data.mydongtailist;
+          }
+          
+          if (res.data.data.type == 'add') {
             wx.showToast({
               title: "点赞成功"
             })
             obj[t.currentTarget.dataset.index].user_is_dianzan = true
-          }else{
+          } else {
             wx.showToast({
               title: "取消点赞"
             })
             obj[t.currentTarget.dataset.index].user_is_dianzan = false
           }
           obj[t.currentTarget.dataset.index].dianzan_sum = res.data.data.dianzan_num
-          that.setData({
-            dongtailist:obj
-          })
+          if (that.data.activeIndex == 0) {
+            that.setData({
+              dongtailist: obj
+            })
+          } else {
+            that.setData({
+              mydongtailist: obj
+            })
+          }
+          
         }
       }
     })
@@ -1017,13 +1069,13 @@ Page({
         icon: "loading",
         duration: 700
       })
-    } else if (!isNumber(that.data.complete1)){
+    } else if (!isNumber(that.data.complete1)) {
       wx.showToast({
         title: "格式错误",
         icon: "loading",
         duration: 700
       })
-    } else if (that.data.complete1 <0.01){
+    } else if (that.data.complete1 < 0.01) {
       wx.showToast({
         title: "最低打赏0.01元",
         icon: "loading",
@@ -1035,7 +1087,7 @@ Page({
         icon: "loading",
         duration: 700
       })
-    }else{
+    } else {
       app.util.request({
 
         url: "entry/wxapp/dashang",
@@ -1055,18 +1107,31 @@ Page({
               reward: !1,
             });
             var obj = [];
+            
             var arr = { 'dashanglist': [] };
-            obj = that.data.dongtailist;
+            if (that.data.activeIndex == 0) {
+              obj = that.data.dongtailist;
+            } else {
+              obj = that.data.mydongtailist;
+            }
+            
             var add = { 'name': wx.getStorageSync('users').name, 'dashang_money': parseFloat(that.data.complete1).toFixed(2) }
             arr.dashanglist[0] = add;
             for (var i = 0; i < obj[that.data.dtindex].dashanglist.length; i++) {
               arr.dashanglist[i + 1] = obj[that.data.dtindex].dashanglist[i]
             }
             obj[that.data.dtindex].dashanglist = arr.dashanglist;
-            that.setData({
-              dongtailist: obj
-            })
-          }else{
+            if (that.data.activeIndex == 0) {
+              that.setData({
+                dongtailist: obj
+              })
+            } else {
+              that.setData({
+                mydongtailist: obj
+              })
+            }
+            
+          } else {
             wx.showToast({
               title: res.data.info
             })
@@ -1074,19 +1139,19 @@ Page({
         }
       })
     }
-    
+
   },
   //动态评论接口
   commentact: function () {
     var that = this;
     //console.log(that.data.dtid)
-    if(that.data.complete == null){
+    if (that.data.complete == null) {
       wx.showToast({
         title: "内容为空",
         icon: "loading",
         duration: 700
       })
-    }else{
+    } else {
       app.util.request({
         url: "entry/wxapp/pinglun",
         data: {
@@ -1100,28 +1165,44 @@ Page({
             wx.showToast({
               title: "评论成功"
             })
-
+            
             var obj = [];
             var arr = { 'pinglunlist': [] };
-            obj = that.data.dongtailist;
+            if (that.data.activeIndex == 0) {
+              obj = that.data.dongtailist;
+            } else {
+              obj = that.data.mydongtailist;
+            }
+            
             var add = res.data.data
             arr.pinglunlist[0] = add;
             for (var i = 0; i < obj[that.data.dtindex].pinglunlist.length; i++) {
               arr.pinglunlist[i + 1] = obj[that.data.dtindex].pinglunlist[i]
             }
             obj[that.data.dtindex].pinglunlist = arr.pinglunlist;
-            that.setData({
-              dongtailist: obj
-            })
-            that.setData({
-              comment: !1,
-              dongtailist: obj
-            })
+            if (that.data.activeIndex == 0) {
+              that.setData({
+                dongtailist: obj
+              })
+              that.setData({
+                comment: !1,
+                dongtailist: obj
+              })
+            } else {
+              that.setData({
+                mydongtailist: obj
+              })
+              that.setData({
+                comment: !1,
+                mydongtailist: obj
+              })
+            }
+            
           }
         }
       })
     }
-    
+
   },
   //动态取消关注接口
   unfollow: function (t) {
@@ -1131,7 +1212,7 @@ Page({
       url: "entry/wxapp/qx_guanzhu",
       data: {
         userid1: wx.getStorageSync('users').id,  //取消关注人
-        userid2: t.currentTarget.dataset.id ,   //被取消关注人
+        userid2: t.currentTarget.dataset.id,   //被取消关注人
       },
       success: function (res) {
         console.log(res.data)
@@ -1140,26 +1221,38 @@ Page({
             title: "取消关注",
             success: function (e) {
 
-              var obj = [],
-              obj = that.data.dongtailist;
+              var obj = [];
+              if (that.data.activeIndex == 0) {
+                obj = that.data.dongtailist;
+              } else {
+                obj = that.data.mydongtailist;
+              }
               
+
               obj[t.currentTarget.dataset.index].is_guanzhu = false
-              for(var i=0;i<obj.length;i++){
-                if (obj[t.currentTarget.dataset.index].userid == obj[i].userid){
+              for (var i = 0; i < obj.length; i++) {
+                if (obj[t.currentTarget.dataset.index].userid == obj[i].userid) {
                   obj[i].is_guanzhu = false
                 }
               }
-              that.setData({
-                dongtailist: obj
-              })
+              if (that.data.activeIndex == 0) {
+                that.setData({
+                  dongtailist: obj
+                })
+              } else {
+                that.setData({
+                  mydongtailist: obj
+                })
+              }
+              
 
 
-             },
+            },
             fail: function (t) { },
             complete: function (t) { }
           })
-          
-          
+
+
         }
       }
     })
@@ -1168,7 +1261,12 @@ Page({
   mycomlike: function (t) {
     var that = this;
     var obj = [];
-    obj = that.data.dongtailist;
+    if (that.data.activeIndex == 0) {
+      obj = that.data.dongtailist;
+    } else {
+      obj = that.data.mydongtailist;
+    }
+    
 
     app.util.request({
 
@@ -1184,21 +1282,33 @@ Page({
             title: "点赞成功",
             duration: 1e3
           })
-          obj[t.currentTarget.dataset.index].pinglunlist[t.currentTarget.dataset.plindex].heart = parseInt(obj[t.currentTarget.dataset.index].pinglunlist[t.currentTarget.dataset.plindex].heart) +1
-          obj[t.currentTarget.dataset.index].pinglunlist[t.currentTarget.dataset.plindex].user_is_dianzan = true
           
-        } else if (res.data.info == '取消点赞'){
+          obj[t.currentTarget.dataset.index].pinglunlist[t.currentTarget.dataset.plindex].heart = parseInt(obj[t.currentTarget.dataset.index].pinglunlist[t.currentTarget.dataset.plindex].heart) + 1
+          obj[t.currentTarget.dataset.index].pinglunlist[t.currentTarget.dataset.plindex].user_is_dianzan = true
+
+        } else if (res.data.info == '取消点赞') {
           wx.showToast({
             title: "取消点赞",
             duration: 1e3
           })
-          
-          obj[t.currentTarget.dataset.index].pinglunlist[t.currentTarget.dataset.plindex].heart = parseInt(obj[t.currentTarget.dataset.index].pinglunlist[t.currentTarget.dataset.plindex].heart) -1
+          if (that.data.activeIndex == 0) {
+            console.log("最新动态");
+          } else {
+            console.log("我的关注");
+          }
+          obj[t.currentTarget.dataset.index].pinglunlist[t.currentTarget.dataset.plindex].heart = parseInt(obj[t.currentTarget.dataset.index].pinglunlist[t.currentTarget.dataset.plindex].heart) - 1
           obj[t.currentTarget.dataset.index].pinglunlist[t.currentTarget.dataset.plindex].user_is_dianzan = false
         }
-        that.setData({
-          dongtailist: obj
-        })
+        if (that.data.activeIndex == 0) {
+          that.setData({
+            dongtailist: obj
+          })
+        } else {
+          that.setData({
+            mydongtailist: obj
+          })
+        }
+        
       }
     })
   },
@@ -1207,13 +1317,13 @@ Page({
   formid_one: function (t) {
     this.setData({
       comment: !1,
-      reward:!1
+      reward: !1
     });
   },
   //点击评论按钮
-  mycomment: function (e){
-    wx.navigateTo({ 
-      url: '../comment/comment?dtid='+ e.currentTarget.dataset.id +"&pid=0"
+  mycomment: function (e) {
+    wx.navigateTo({
+      url: '../comment/comment?dtid=' + e.currentTarget.dataset.id + "&pid=0"
     });
     // this.setData({
     //   comment: !0,
@@ -1223,20 +1333,27 @@ Page({
   },
   //点击打赏按钮
   myreward: function (e) {
-    this.setData({
-      reward: !0,
-      dturid: e.currentTarget.dataset.userid,
-      dtid: e.currentTarget.dataset.id,
-      dtindex: e.currentTarget.dataset.index
-    });
+    if (e.currentTarget.dataset.userid == wx.getStorageSync('users').id) {
+      wx.showToast({
+        title: "不能打赏自己",
+        duration: 1e3,
+        icon: "loading"
+      })
+    } else {
+      this.setData({
+        reward: !0,
+        dturid: e.currentTarget.dataset.userid,
+        dtid: e.currentTarget.dataset.id,
+        dtindex: e.currentTarget.dataset.index
+      });
+    }
   },
-
   // 点击播放，其它视频结束
 
   bindplay: function (e) {
 
     var id = e.currentTarget.id         //点击id
-    console.log(e.currentTarget) 
+    console.log(e.currentTarget)
     console.log(this.data.playIndex)      //正在播放的id
 
     if (!this.data.playIndex) { // 没有播放时播放视频
@@ -1276,7 +1393,6 @@ Page({
     }
 
   },
- 
 
 
 
@@ -1291,6 +1407,7 @@ Page({
 
 
 
-    
+
+
 
 });

@@ -887,14 +887,14 @@ button::after {
 }
 
 .post {
-    width: 150rpx;
-    height: 66rpx;
+    width: 120rpx;
+    height: 48rpx;
     border-radius: 10rpx;
-    background: #ed414a;
-    color: #fff;
+    border:1px solid #ff9913;
+    color: #ff9913;
     right: 0;
-    font-size: 28rpx;
-    line-height: 66rpx;
+    font-size: 20rpx;
+    line-height: 48rpx;
     text-align: center;
 }
 

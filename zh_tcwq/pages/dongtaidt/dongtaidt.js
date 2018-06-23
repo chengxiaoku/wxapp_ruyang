@@ -23,7 +23,7 @@ Page({
     hb_share: !1,
     share_red: !1,
 
-    dontailist:null
+    dongtailist:null
   },
   updateUserInfo: function (t) {
     "getUserInfo:ok" == t.detail.errMsg && (this.setData({
@@ -796,38 +796,47 @@ Page({
   follow: function (t) {
     var that = this;
     //console.log(t.currentTarget.dataset.id)
-    app.util.request({
-      url: "entry/wxapp/guanzhu",
-      data: {
-        userid1: wx.getStorageSync('users').id,  //关注人
-        userid2: t.currentTarget.dataset.id  //被关注人
-      },
-      success: function (res) {
-        //console.log(res)
-        if (res.data.success) {
-          wx.showToast({
-            title: "关注成功",
-            icon: "",
-            image: "",
-            duration: 2e3,
-            mask: !0,
-            success: function (e) {
-
-              var obj = [],
-              obj = that.data.dongtailist;
-              obj.is_guanzhu = true
-              that.setData({
-                dongtailist: obj
-              })
-
-            },
-            fail: function (t) { },
-            complete: function (t) { }
-          })
-
+    if(this.data.dongtailist.userid == wx.getStorageSync('users').id){
+      wx.showToast({
+        title: "不能关注自己",
+        duration: 1e3,
+        icon:"loading"
+      })
+    }else{
+      app.util.request({
+        url: "entry/wxapp/guanzhu",
+        data: {
+          userid1: wx.getStorageSync('users').id,  //关注人
+          userid2: t.currentTarget.dataset.id  //被关注人
+        },
+        success: function (res) {
+          //console.log(res)
+          if (res.data.success) {
+            wx.showToast({
+              title: "关注成功",
+              icon: "",
+              image: "",
+              duration: 2e3,
+              mask: !0,
+              success: function (e) {
+  
+                var obj = [],
+                obj = that.data.dongtailist;
+                obj.is_guanzhu = true
+                that.setData({
+                  dongtailist: obj
+                })
+  
+              },
+              fail: function (t) { },
+              complete: function (t) { }
+            })
+  
+          }
         }
-      }
-    })
+      })
+    }
+    
   },
   //动态点赞接口
   mylike: function (t) {
@@ -970,40 +979,49 @@ Page({
   //动态取消关注接口
   unfollow: function (t) {
     var that = this;
-    app.util.request({
+    if(this.data.dongtailist.userid == wx.getStorageSync('users').id){
+      wx.showToast({
+        title: "不能取关自己",
+        duration: 1e3,
+        icon:"loading"
+      })
+    }else{
+      app.util.request({
 
-      url: "entry/wxapp/qx_guanzhu",
-      data: {
-        userid1: wx.getStorageSync('users').id,  //取消关注人
-        userid2: t.currentTarget.dataset.id,   //被取消关注人
-      },
-      success: function (res) {
-        //console.log(res.data)
-        if (res.data.success) {
-          wx.showToast({
-            title: "取消关注成功",
-            icon: "fail",
-            image: "",
-            duration: 2e3,
-            mask: !0,
-            success: function (e) {
-
-              var obj = [],
-              obj = that.data.dongtailist;
-
-              obj.is_guanzhu = false
-              that.setData({
-                dongtailist: obj
-              })
-            },
-            fail: function (t) { },
-            complete: function (t) { }
-          })
-
-
+        url: "entry/wxapp/qx_guanzhu",
+        data: {
+          userid1: wx.getStorageSync('users').id,  //取消关注人
+          userid2: t.currentTarget.dataset.id,   //被取消关注人
+        },
+        success: function (res) {
+          //console.log(res.data)
+          if (res.data.success) {
+            wx.showToast({
+              title: "取消关注成功",
+              icon: "fail",
+              image: "",
+              duration: 2e3,
+              mask: !0,
+              success: function (e) {
+  
+                var obj = [],
+                obj = that.data.dongtailist;
+  
+                obj.is_guanzhu = false
+                that.setData({
+                  dongtailist: obj
+                })
+              },
+              fail: function (t) { },
+              complete: function (t) { }
+            })
+  
+  
+          }
         }
-      }
-    })
+      })
+    }
+    
   },
   //评论点赞接口
   mycomlike: function (t) {
@@ -1078,9 +1096,18 @@ Page({
   },
   //点击打赏按钮
   myreward: function (e) {
-    this.setData({
-      reward: !0,
-    });
+    if(this.data.dongtailist.userid == wx.getStorageSync('users').id){
+      wx.showToast({
+        title: "不能打赏自己",
+        duration: 1e3,
+        icon:"loading"
+      })
+    }else{
+      this.setData({
+        reward: !0,
+      });
+    }
+    
   },
 
   //评论详情

@@ -3,7 +3,7 @@
     <view class="miaoshu_box">
       <textarea class="miaoshu" maxlength="540" name="content" placeholder="写评论"></textarea>
     </view>
-    <button class="confirm" disabled="{{disabled}}" formType="submit">确认发布</button>
+    <button class="confirm" disabled="{{disabled}}" formType="submit">确认评论</button>
     <button class="cancle" disabled="{{disabled}}" bindtap="cancel" >取消</button>
   </view>
  
